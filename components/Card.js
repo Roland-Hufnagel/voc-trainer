@@ -14,7 +14,7 @@ const StyledSection = styled.section`
   border: 2px solid #ddd;
   border-radius: 5px;
   margin: 10px auto;
-  height: 110px;
+  height: 100px;
   max-width: 200px;
   text-align: center;
 `;

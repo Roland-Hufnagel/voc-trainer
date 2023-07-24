@@ -12,4 +12,5 @@ const StyledHeader = styled.header`
   background-color: #ddd;
   left: 0;
   right: 0;
+
 `;

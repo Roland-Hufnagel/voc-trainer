@@ -3,6 +3,11 @@ import { vocs } from "../lib/db";
 import Card from "../components/Card";
 import styled from "styled-components";
 import Cardlist from "../components/Cardlist";
+
+
+
+
+
 export default function Home() {
   return (
     <>

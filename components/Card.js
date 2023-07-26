@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import { Button } from "./Button";
 
 export default function Card({ voc }) {
   return (
     <StyledSection>
       <p>{voc.word}</p>
+      <Button>Show answer</Button>
     </StyledSection>
   );
 }

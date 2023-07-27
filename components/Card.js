@@ -7,7 +7,7 @@ export default function Card({ voc }) {
 
   return (
     <StyledSection>
-      <p style={{ whiteSpace: "pre" }}>
+      <p style={{ whiteSpace: "pre-wrap" }}>
         {voc.word}
         {showTranslation && `\n = \n ${voc.translation}`}
       </p>

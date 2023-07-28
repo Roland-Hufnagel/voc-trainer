@@ -24,24 +24,23 @@ function getXRandomIndexes(x, length) {
 }
 
 export default function Home() {
-  const [cards, setCards] = useState(vocs);
   const [indexes, setIndexes] = useState([]);
   useEffect(() => {
-    setIndexes(getXRandomIndexes(5, cards.length));
+    setIndexes(getXRandomIndexes(5, vocs.length));
   }, []);
 
   return (
     <>
       <Header />
       <StyledMain>
-        {cards.length > 0 ? (
+        {vocs.length > 0 ? (
           <Cardlist>
-            {indexes.map((item) => {
-              return <Card key={item} voc={cards[item]}></Card>;
+            {indexes.map((index) => {
+              return <Card key={index} voc={vocs[index]}></Card>;
             })}
           </Cardlist>
         ) : (
-          <p>Keine Vokabeln vorhanden</p>
+          <p>no vocabularies available. Please start defining them.</p>
         )}
       </StyledMain>
     </>

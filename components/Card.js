@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Card({ voc }) {
   return (
     <StyledSection>
-      <p>{voc?.word}</p>
+      <p>{voc.word}</p>
     </StyledSection>
   );
 }

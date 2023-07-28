@@ -5,42 +5,29 @@ import styled from "styled-components";
 import Cardlist from "../components/Cardlist";
 import { useState, useEffect } from "react";
 
-function getXRandomIndexes(x, length) {
-  // x => how many cards you want
-  // length => how many cards there are
-
-  if (x > length) {
-    x = length;
-  }
-  const maxIndex = length - 1;
-  const arr = [];
-  while (arr.length < x) {
-    const randomNumber = Math.floor(Math.random() * (maxIndex + 1));
-    if (!arr.includes(randomNumber)) {
-      arr.push(randomNumber);
-    }
-  }
-  return arr;
+function pickXRandomCards(amountToPick, allCards) {
+  const shuffledCards = allCards.sort(() => 0.5 - Math.random());
+  return shuffledCards.slice(0, amountToPick);
 }
 
 export default function Home() {
-  const [indexes, setIndexes] = useState([]);
+  const [playCards, setPlayCards] = useState([]);
   useEffect(() => {
-    setIndexes(getXRandomIndexes(5, vocs.length));
+    setPlayCards(pickXRandomCards(5, vocs));
   }, []);
-
+  
   return (
     <>
       <Header />
       <StyledMain>
         {vocs.length > 0 ? (
           <Cardlist>
-            {indexes.map((index) => {
-              return <Card key={index} voc={vocs[index]}></Card>;
+            {playCards.map((card) => {
+              return <Card key={card.id} voc={card}></Card>;
             })}
           </Cardlist>
         ) : (
-          <p>no vocabularies available. Please start defining them.</p>
+          <p>No vocabularies available. Please start defining them.</p>
         )}
       </StyledMain>
     </>

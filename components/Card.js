@@ -1,9 +1,27 @@
 import styled from "styled-components";
+import { useState } from "react";
+import { Button } from "./Button";
 
 export default function Card({ voc }) {
+  const [showTranslation, setShowTranslation] = useState(false);
+
   return (
     <StyledSection>
-      <p>{voc.word}</p>
+      <p style={{ whiteSpace: "pre-wrap" }}>
+        {voc.word}
+        {showTranslation && `\n = \n ${voc.translation}`}
+      </p>
+      {!showTranslation && (
+        <Button
+          onClick={() =>
+            setShowTranslation(
+              (previousShowTranslation) => !previousShowTranslation
+            )
+          }
+        >
+          Show answer
+        </Button>
+      )}
     </StyledSection>
   );
 }

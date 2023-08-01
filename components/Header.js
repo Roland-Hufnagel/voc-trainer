@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export default function Header() {
-  return <StyledHeader>Voc-Trainer-Spezial!</StyledHeader>;
+  return <StyledHeader>Voc-Trainer</StyledHeader>;
 }
 
 const StyledHeader = styled.header`

@@ -2,22 +2,29 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Button } from "./Button";
 
-export default function Card({ voc }) {
+export default function Card({ voc, handleHit, handleView }) {
   const [showTranslation, setShowTranslation] = useState(false);
 
   return (
     <StyledSection>
       <p style={{ whiteSpace: "pre-wrap" }}>
-        {voc.word}
+        {voc.word} {voc.views} {voc.hits}
         {showTranslation && `\n = \n ${voc.translation}`}
       </p>
       {!showTranslation && (
         <Button
-          onClick={() =>
+          onClick={() => {
+            handleHit(voc.id);
+            handleView(voc.id);
             setShowTranslation(
               (previousShowTranslation) => !previousShowTranslation
-            )
-          }
+            );
+          }}
+          // onClick={() =>
+          //   setShowTranslation(
+          //     (previousShowTranslation) => !previousShowTranslation
+          //   )
+          //}
         >
           Show answer
         </Button>

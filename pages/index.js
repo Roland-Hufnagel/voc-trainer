@@ -15,7 +15,7 @@ export default function Home() {
   const cardsToPick = 5;
   const hitsToWin = 3;
   // Derived from States:
-  const playCards = [...cards.slice().filter((card) => card.hits < hitsToWin)];
+  const playCards = [...cards.filter((card) => card.hits < hitsToWin)];
   playCards.length =
     cardsToPick > playCards.length ? playCards.length : cardsToPick;
 

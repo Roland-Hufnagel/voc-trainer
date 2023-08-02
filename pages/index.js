@@ -6,24 +6,25 @@ import Cardlist from "../components/Cardlist";
 import { useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
+// States:
+const cardsToPick = 5;
+const hitsToWin = 3;
+
 export default function Home() {
   const [cards, setCards] = useLocalStorageState("cards", {
     defaultValue: vocs,
   });
-
-  // States:
-  const cardsToPick = 5;
-  const hitsToWin = 3;
+  
   // Derived from States:
   const playCards = [...cards.filter((card) => card.hits < hitsToWin)];
   playCards.length =
     cardsToPick > playCards.length ? playCards.length : cardsToPick;
-
+  
 
   function shuffleCards() {
     setCards((prev) => prev.sort(() => 0.5 - Math.random()));
   }
-  
+
   function handleHit(id) {
     setCards((prev) =>
       prev.map((card) =>

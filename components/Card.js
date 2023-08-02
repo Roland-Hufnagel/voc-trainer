@@ -20,11 +20,6 @@ export default function Card({ voc, handleHit, handleView }) {
               (previousShowTranslation) => !previousShowTranslation
             );
           }}
-          // onClick={() =>
-          //   setShowTranslation(
-          //     (previousShowTranslation) => !previousShowTranslation
-          //   )
-          //}
         >
           Show answer
         </Button>

@@ -63,6 +63,7 @@ export default function Card({ voc, handleHit, handleView }) {
 
 const StyledCard = styled.li`
   background-color: white;
+  color: var(--darktext);
   display: grid;
   grid-template-columns: 1fr 2rem 2rem;
   grid-template-rows: 1fr 1fr 1px 1fr 1fr;
@@ -74,7 +75,7 @@ const StyledCard = styled.li`
     "translation . correct-button";
   border-radius: 0.25rem;
   margin: 0.7rem auto;
-  padding: 0.5rem;
+  padding: 0 0.8rem;
   height: 10rem;
   width: 15rem;
   overflow: hidden;
@@ -84,6 +85,10 @@ const StyledCard = styled.li`
 const Word = styled.p`
   grid-area: word;
   align-self: center;
+  font-family: var(--fontfamily-special);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-right: 0.5rem;
 `;
 
 const ViewsIcon = styled.div`
@@ -106,9 +111,12 @@ const HitsCount = styled.div`
   align-self: center;
 `;
 
-const Translation = styled.div`
+const Translation = styled.p`
   grid-area: translation;
   align-self: center;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-right: 0.5rem;
 
   &.hidden {
     display: none;
@@ -139,7 +147,7 @@ const Slider = styled.div`
   display: flex;
   align-items: center;
   padding: 0.5rem;
-  margin: 0 -0.5rem -0.5rem;
+  margin: 0 -0.8rem -0.8rem;
 
   transition: transform 700ms ease-in-out;
 

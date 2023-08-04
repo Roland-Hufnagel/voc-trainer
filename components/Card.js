@@ -7,17 +7,19 @@ export default function Card({ voc, handleHit, handleView }) {
 
   return (
     <StyledCard>
-      <Word>Word</Word>
+      <Word>{voc.word}</Word>
       <ViewsIcon>View-icon</ViewsIcon>
-      <ViewsCount>View-count</ViewsCount>
-      <CorrectsIcon>Correct Icon</CorrectsIcon>
-      <CorrectsCount>Correct count</CorrectsCount>
-      <Translation>Translation</Translation>
+      <ViewsCount>{voc.views}</ViewsCount>
+      <HitsIcon>Correct Icon</HitsIcon>
+      <HitsCount>{voc.hits}</HitsCount>
+      <Translation>{voc.translation}</Translation>
       <WrongButton>Wrong Button</WrongButton>
       <CorrectButton>Correct Button</CorrectButton>
       {/* <p>
         {voc.word} {voc.views} {voc.hits}
         {showTranslation && `\n = \n ${voc.translation}`}
+      </p> */}
+      {/* {!showTranslation && (
       </p> */}
       {/* {!showTranslation && (
         <Button
@@ -43,7 +45,7 @@ const StyledCard = styled.li`
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
     "word views-icon views-count"
-    "word corrects-icon corrects-count"
+    "word hits-icon hits-count"
     "translation . wrong-button"
     "translation . correct-button";
   border: 2px solid #ddd;
@@ -69,13 +71,13 @@ grid-area: views-count;
 background-color: green;
 `
 
-const CorrectsIcon = styled.div`
-grid-area: corrects-icon;
+const HitsIcon = styled.div`
+grid-area: hits-icon;
 background-color: yellow;
 `
 
-const CorrectsCount = styled.div`
-grid-area: corrects-count;
+const HitsCount = styled.div`
+grid-area: hits-count;
 background-color: orange;
 `
 

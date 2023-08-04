@@ -5,6 +5,11 @@ import { Button } from "./Button";
 export default function Card({ voc, handleHit, handleView }) {
   const [showTranslation, setShowTranslation] = useState(false);
 
+  function handleSliderClick() {
+    setShowTranslation(!showTranslation);
+    handleView(voc.id);
+  }
+
   return (
     <StyledCard>
       <Word>{voc.word}</Word>
@@ -16,13 +21,12 @@ export default function Card({ voc, handleHit, handleView }) {
       <Translation>{voc.translation}</Translation>
       <WrongButton>✕</WrongButton>
       <CorrectButton>✓</CorrectButton>
-      <Slider></Slider>
-      {/* <p>
-        {voc.word} {voc.views} {voc.hits}
-        {showTranslation && `\n = \n ${voc.translation}`}
-      </p> */}
-      {/* {!showTranslation && (
-      </p> */}
+      <Slider
+        className={showTranslation ? "active" : ""}
+        onClick={handleSliderClick}
+      >
+        ➔
+      </Slider>
       {/* {!showTranslation && (
         <Button
           onClick={() => {
@@ -51,12 +55,13 @@ const StyledCard = styled.li`
     "hr hr hr"
     "translation . wrong-button"
     "translation . correct-button";
-  border: 2px solid #ddd;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   margin: 0.7rem auto;
   padding: 0.5rem;
   height: 10rem;
   width: 15rem;
+  overflow: hidden;
+  box-shadow: var(--boxshadow-secondary);
 `;
 
 const Word = styled.p`
@@ -102,12 +107,22 @@ const CorrectButton = styled.div`
 const HorizontalLine = styled.hr`
   all: unset;
   grid-area: hr;
-  border-bottom: 1px solid #f3f3f3;
+  border-bottom: 1px solid var(--gray-light);
   width: 100%;
 `;
 
 const Slider = styled.div`
   grid-area: 6 / 4 / 3 / 1;
   background-color: aquamarine;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
   margin: 0 -0.5rem -0.5rem;
+
+  transition: transform 700ms ease-in-out;
+
+  &.active {
+    transform: translateX(100%);
+  }
 `;

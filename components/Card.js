@@ -1,45 +1,62 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { Button } from "./Button";
 
 export default function Card({ voc, handleHit, handleView }) {
   const [showTranslation, setShowTranslation] = useState(false);
+  const [wasClicked, setWasClicked] = useState(false);
 
   function handleSliderClick() {
     setShowTranslation(!showTranslation);
     handleView(voc.id);
   }
 
+  function handleCorrectClick() {
+    setWasClicked(true);
+    handleHit(voc.id);
+  }
+
+  function handleWrongClick() {
+    setWasClicked(true);
+  }
+
   return (
     <StyledCard>
       <Word>{voc.word}</Word>
       <ViewsIcon>👁</ViewsIcon>
-      <ViewsCount>{voc.views}</ViewsCount>
+      <ViewsCount aria-label="Number of views:">{voc.views}</ViewsCount>
       <HitsIcon>✓</HitsIcon>
-      <HitsCount>{voc.hits}</HitsCount>
+      <HitsCount aria-label="Number of hits:">{voc.hits}</HitsCount>
       <HorizontalLine />
-      <Translation>{voc.translation}</Translation>
-      <WrongButton>✕</WrongButton>
-      <CorrectButton>✓</CorrectButton>
+      <Translation
+        className={showTranslation ? "" : "hidden"}
+        aria-hidden={!showTranslation}
+      >
+        {voc.translation}
+      </Translation>
+      {!wasClicked && (
+        <>
+          <WrongButton
+            onClick={handleWrongClick}
+            aria-label="Mark as incorrect"
+          >
+            ✕
+          </WrongButton>
+          <CorrectButton
+            onClick={handleCorrectClick}
+            aria-label="Mark as correct"
+          >
+            ✓
+          </CorrectButton>
+        </>
+      )}
+
       <Slider
         className={showTranslation ? "active" : ""}
         onClick={handleSliderClick}
+        aria-label="Show translation"
       >
         ➔
       </Slider>
-      {/* {!showTranslation && (
-        <Button
-          onClick={() => {
-            handleHit(voc.id);
-            handleView(voc.id);
-            setShowTranslation(
-              (previousShowTranslation) => !previousShowTranslation
-            );
-          }}
-        >
-          Show answer
-        </Button>
-      )} */}
     </StyledCard>
   );
 }
@@ -92,6 +109,10 @@ const HitsCount = styled.div`
 const Translation = styled.div`
   grid-area: translation;
   align-self: center;
+
+  &.hidden {
+    display: none;
+  }
 `;
 
 const WrongButton = styled.div`

@@ -8,13 +8,15 @@ export default function Card({ voc, handleHit, handleView }) {
   return (
     <StyledCard>
       <Word>{voc.word}</Word>
-      <ViewsIcon>View-icon</ViewsIcon>
+      <ViewsIcon>👁</ViewsIcon>
       <ViewsCount>{voc.views}</ViewsCount>
-      <HitsIcon>Correct Icon</HitsIcon>
+      <HitsIcon>✓</HitsIcon>
       <HitsCount>{voc.hits}</HitsCount>
+      <HorizontalLine />
       <Translation>{voc.translation}</Translation>
-      <WrongButton>Wrong Button</WrongButton>
-      <CorrectButton>Correct Button</CorrectButton>
+      <WrongButton>✕</WrongButton>
+      <CorrectButton>✓</CorrectButton>
+      <Slider></Slider>
       {/* <p>
         {voc.word} {voc.views} {voc.hits}
         {showTranslation && `\n = \n ${voc.translation}`}
@@ -42,56 +44,70 @@ const StyledCard = styled.li`
   background-color: white;
   display: grid;
   grid-template-columns: 1fr 2rem 2rem;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1px 1fr 1fr;
   grid-template-areas:
     "word views-icon views-count"
     "word hits-icon hits-count"
+    "hr hr hr"
     "translation . wrong-button"
     "translation . correct-button";
   border: 2px solid #ddd;
   border-radius: 0.5rem;
   margin: 0.7rem auto;
+  padding: 0.5rem;
   height: 10rem;
   width: 15rem;
-
 `;
 
-const Word = styled.div`
-grid-area: word;
-background-color: red;
-`
+const Word = styled.p`
+  grid-area: word;
+  align-self: center;
+`;
 
 const ViewsIcon = styled.div`
-grid-area: views-icon;
-background-color: blue;
-`
+  grid-area: views-icon;
+  align-self: center;
+`;
 
-const ViewsCount = styled.div`
-grid-area: views-count;
-background-color: green;
-`
+const ViewsCount = styled.p`
+  grid-area: views-count;
+  align-self: center;
+`;
 
 const HitsIcon = styled.div`
-grid-area: hits-icon;
-background-color: yellow;
-`
+  grid-area: hits-icon;
+  align-self: center;
+`;
 
 const HitsCount = styled.div`
-grid-area: hits-count;
-background-color: orange;
-`
+  grid-area: hits-count;
+  align-self: center;
+`;
 
 const Translation = styled.div`
-grid-area: translation;
-background-color: purple;
-`
+  grid-area: translation;
+  align-self: center;
+`;
 
 const WrongButton = styled.div`
-grid-area: wrong-button;
-background-color: purple;
-`
+  grid-area: wrong-button;
+  align-self: center;
+`;
 
 const CorrectButton = styled.div`
-grid-area: correct-button;
-background-color: brown;
-`
+  grid-area: correct-button;
+  align-self: center;
+`;
+
+const HorizontalLine = styled.hr`
+  all: unset;
+  grid-area: hr;
+  border-bottom: 1px solid #f3f3f3;
+  width: 100%;
+`;
+
+const Slider = styled.div`
+  grid-area: 6 / 4 / 3 / 1;
+  background-color: aquamarine;
+  margin: 0 -0.5rem -0.5rem;
+`;

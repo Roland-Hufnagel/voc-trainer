@@ -5,6 +5,8 @@ export default createGlobalStyle`
     --white: #ffffff;
     --darktext: #27273a;
     --background: #f5f7fd;
+
+    --boxshadow-primary: hsl(0 0% 0% / 15%) 0px 2px 12px 0px;
     
     font-size: 100%;     
       }

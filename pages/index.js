@@ -14,12 +14,11 @@ export default function Home() {
   const [cards, setCards] = useLocalStorageState("cards", {
     defaultValue: vocs,
   });
-  
+
   // Derived from States:
   const playCards = [...cards.filter((card) => card.hits < hitsToWin)];
   playCards.length =
     cardsToPick > playCards.length ? playCards.length : cardsToPick;
-  
 
   function shuffleCards() {
     setCards((prev) => prev.sort(() => 0.5 - Math.random()));
@@ -57,6 +56,7 @@ export default function Home() {
                 voc={playCard}
                 handleHit={handleHit}
                 handleView={handleView}
+                cardColor={"aquamarine"}
               />
             ))}
           </Cardlist>

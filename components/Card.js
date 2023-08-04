@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function Card({ voc, handleHit, handleView }) {
+export default function Card({ voc, handleHit, handleView, cardColor }) {
   const [showTranslation, setShowTranslation] = useState(false);
   const [wasClicked, setWasClicked] = useState(false);
 
@@ -53,6 +53,7 @@ export default function Card({ voc, handleHit, handleView }) {
       <Slider
         className={showTranslation ? "active" : ""}
         onClick={handleSliderClick}
+        cardColor={cardColor}
         aria-label="Show translation"
       >
         ➔
@@ -142,7 +143,7 @@ const HorizontalLine = styled.hr`
 
 const Slider = styled.div`
   grid-area: 6 / 4 / 3 / 1;
-  background-color: aquamarine;
+  background-color: ${props => props.cardColor};
   color: var(--white);
   display: flex;
   align-items: center;

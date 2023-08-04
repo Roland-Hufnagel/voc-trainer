@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
-export default createGlobalStyle`
+export const accentColors = ["#a9ead8", "#ade7e2", "#b0e2eb", "#b1d5ec", "#b0c9eb"];
+
+const GlobalStyles = createGlobalStyle`
   :root {
     --white: #ffffff;
     --darktext: #27273a;
@@ -71,3 +73,4 @@ export default createGlobalStyle`
 
 `;
 
+export default GlobalStyles

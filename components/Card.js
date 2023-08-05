@@ -49,7 +49,7 @@ export default function Card({ voc, handleHit, handleView, cardColor }) {
             onClick={handleWrongClick}
             aria-label="Mark as incorrect"
           >
-            <Image src={iconCross} alt="Cross icon" width="20" />
+            <Image src={iconCross} alt="Cross icon" width="18" />
           </WrongButton>
           <CorrectButton
             onClick={handleCorrectClick}
@@ -76,14 +76,14 @@ const StyledCard = styled.li`
   background-color: white;
   color: var(--darktext);
   display: grid;
-  grid-template-columns: 1fr 1.5rem 1rem;
+  grid-template-columns: 1fr 2rem 2rem;
   grid-template-rows: 1fr 1fr 1px 1fr 1fr;
   grid-template-areas:
     "word views-icon views-count"
     "word hits-icon hits-count"
     "hr hr hr"
-    "translation . wrong-button"
-    "translation . correct-button";
+    "translation wrong-button correct-button"
+    "translation wrong-button correct-button";
   border-radius: 0.25rem;
   margin: 0.7rem auto;
   padding: 0 0.8rem;
@@ -144,7 +144,7 @@ const WrongButton = styled.div`
   grid-area: wrong-button;
   padding-top: 0.5rem;
   align-self: center;
-  justify-self: end;
+  margin-top: -5px;
 `;
 
 const CorrectButton = styled.div`

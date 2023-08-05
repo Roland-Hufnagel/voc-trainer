@@ -28,14 +28,18 @@ export default function Card({ voc, handleHit, handleView, cardColor }) {
   return (
     <StyledCard>
       <Word>{voc.word}</Word>
-      <ViewsIcon>
-        <Image src={iconEye} alt="Eye icon" width="18" />
-      </ViewsIcon>
-      <ViewsCount aria-label="Number of views:">{voc.views}</ViewsCount>
-      <HitsIcon>
-        <Image src={iconCheckmark} alt="Checkmark icon" width="16" />
-      </HitsIcon>
-      <HitsCount aria-label="Number of hits:">{voc.hits}</HitsCount>
+      <ViewsCount aria-label="Number of views:">
+        <ViewsIcon>
+          <Image src={iconEye} alt="Eye icon" width="18" />
+        </ViewsIcon>
+        {voc.views}
+      </ViewsCount>
+      <HitsCount aria-label="Number of hits:">
+        <HitsIcon>
+          <Image src={iconCheckmark} alt="Checkmark icon" width="16" />
+        </HitsIcon>
+        {voc.hits}
+      </HitsCount>
       <HorizontalLine />
       <Translation
         className={showTranslation ? "" : "hidden"}
@@ -47,13 +51,15 @@ export default function Card({ voc, handleHit, handleView, cardColor }) {
         <>
           <WrongButton
             onClick={handleWrongClick}
-            aria-label="Mark as incorrect"
+            aria-label="Mark as wrong"
+            type="button"
           >
             <Image src={iconCross} alt="Cross icon" width="18" />
           </WrongButton>
           <CorrectButton
             onClick={handleCorrectClick}
             aria-label="Mark as correct"
+            type="button"
           >
             <Image src={iconCheckmark} alt="Checkmark icon" width="25" />
           </CorrectButton>
@@ -79,13 +85,13 @@ const StyledCard = styled.li`
   grid-template-columns: 1fr 2rem 2rem;
   grid-template-rows: 1fr 1fr 1px 1fr 1fr;
   grid-template-areas:
-    "word views-icon views-count"
-    "word hits-icon hits-count"
+    "word views views"
+    "word hits hits"
     "hr hr hr"
     "translation wrong-button correct-button"
     "translation wrong-button correct-button";
   border-radius: 0.25rem;
-  margin: 0.7rem auto;
+  margin: 1rem auto;
   padding: 0 0.8rem;
   height: 10rem;
   width: 15rem;
@@ -102,28 +108,24 @@ const Word = styled.p`
   margin-right: 0.5rem;
 `;
 
-const ViewsIcon = styled.div`
-  grid-area: views-icon;
-  align-self: center;
-  justify-self: end;
+const ViewsIcon = styled.span`
+  margin-right: 0.4rem;
 `;
 
 const ViewsCount = styled.p`
-  grid-area: views-count;
-  align-self: center;
+  grid-area: views;
+  align-self: end;
   justify-self: end;
   padding-left: 0.5rem;
 `;
 
-const HitsIcon = styled.div`
-  grid-area: hits-icon;
-  align-self: center;
-  justify-self: end;
+const HitsIcon = styled.span`
+  margin-right: 0.5rem;
 `;
 
-const HitsCount = styled.div`
-  grid-area: hits-count;
-  align-self: center;
+const HitsCount = styled.p`
+  grid-area: hits;
+  align-self: start;
   justify-self: end;
   padding-left: 0.5rem;
 `;
@@ -140,17 +142,21 @@ const Translation = styled.p`
   }
 `;
 
-const WrongButton = styled.div`
+const WrongButton = styled.button`
+  all: unset;
   grid-area: wrong-button;
   padding-top: 0.5rem;
   align-self: center;
   margin-top: -5px;
+  cursor: pointer;
 `;
 
-const CorrectButton = styled.div`
+const CorrectButton = styled.button`
+  all: unset;
   grid-area: correct-button;
   align-self: center;
   justify-self: end;
+  cursor: pointer;
 `;
 
 const HorizontalLine = styled.hr`
@@ -168,8 +174,10 @@ const Slider = styled.div`
   align-items: center;
   padding: 0.5rem;
   margin: 0 -0.8rem -0.8rem;
+  cursor: pointer;
 
-  transition: transform 700ms ease-in-out;
+  transition: transform 500ms;
+  transition-timing-function: cubic-bezier(0.15, 0.94, 1, 0.5);
 
   &.active {
     transform: translateX(100%);

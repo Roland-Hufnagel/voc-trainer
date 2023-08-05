@@ -22,11 +22,12 @@ const GlobalStyles = createGlobalStyle`
   *::before,
   *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   body {
     background-color: var(--background);
-    margin: 0;
     font-family: var(--fontfamily-regular);
   }
 

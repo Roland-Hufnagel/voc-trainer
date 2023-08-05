@@ -88,5 +88,5 @@ export default function Home() {
   );
 }
 const StyledMain = styled.main`
-  margin-top: 2.5rem;
+  margin-top: 4.5rem;
 `;

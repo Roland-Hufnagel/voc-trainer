@@ -9,6 +9,8 @@ import Cardlist from "../components/Cardlist";
 import { vocs } from "../lib/db";
 import { accentColors } from "../styles";
 
+import { accentColors2 } from "../styles";
+
 // States:
 const cardsToPick = 10;
 const hitsToWin = 3;
@@ -76,7 +78,8 @@ export default function Home() {
                 voc={playCard}
                 handleHit={handleHit}
                 handleView={handleView}
-                cardColor={assignCardColor(cardColors, index)}
+                //cardColor={assignCardColor(cardColors, index)}
+                cardColor={accentColors2[index % accentColors2.length]}
               />
             ))}
           </Cardlist>

@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
+
 export const accentColors = [
   "#a9ead8",
   "#ade7e2",
@@ -29,8 +30,8 @@ const GlobalStyles = createGlobalStyle`
     --boxshadow-primary: hsl(0 0% 0% / 15%) 0px 2px 12px 0px;
     --boxshadow-secondary: hsl(0 0% 0% / 25%) 0px 7px 6px -5px;
 
-    --fontfamily-regular: 'Inter', sans-serif;
-    --fontfamily-special: 'Cutive', monospace;
+    //--fontfamily-regular: 'Inter', sans-serif;
+    //--fontfamily-special: 'Cutive', monospace;
     
     font-size: 100%;     
       }

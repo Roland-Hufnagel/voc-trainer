@@ -20,8 +20,8 @@ export default function App({ Component, pageProps }) {
       </Head>
       <style jsx global>{`
         :root {
-          --fontfamily-regular: ${cutive.style.fontFamily};
-          --fontfamily-special: ${inter.style.fontFamily};
+          --fontfamily-regular: ${inter.style.fontFamily};
+          --fontfamily-special: ${cutive.style.fontFamily};
         }
       `}</style>
       <Component {...pageProps} />

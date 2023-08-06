@@ -23,18 +23,16 @@ const StyledHeader = styled.header`
   font-size: 1.3rem;
   position: fixed;
   top: 0;
-  // left: 0;
-  // right: 0;
   width: 100%;
   box-shadow: var(--boxshadow-primary);
 
   & span {
-    padding-top: .6rem;
+    padding-top: 0.6rem;
   }
 `;
 
 const StyledLogo = styled(Image)`
   width: 3.0625rem;
   height: 2.875rem;
-  margin: .4rem 0 .4rem 1rem;
+  margin: 0.4rem 0 0.4rem 1rem;
 `;

@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function Card({ voc, handleHit, handleView, cardColor }) {
   const [showTranslation, setShowTranslation] = useState(false);
-  const [wasClicked, setWasClicked] = useState(false);
+  const [wasRated, setWasRated] = useState(false);
 
   function handleSliderClick() {
     setShowTranslation(!showTranslation);
@@ -17,12 +17,12 @@ export default function Card({ voc, handleHit, handleView, cardColor }) {
   }
 
   function handleCorrectClick() {
-    setWasClicked(true);
+    setWasRated(true);
     handleHit(voc.id);
   }
 
   function handleWrongClick() {
-    setWasClicked(true);
+    setWasRated(true);
   }
 
   return (
@@ -42,12 +42,12 @@ export default function Card({ voc, handleHit, handleView, cardColor }) {
       </HitsCount>
       <HorizontalLine />
       <Translation
-        className={showTranslation ? "" : "hidden"}
+        showTranslation={showTranslation}
         aria-hidden={!showTranslation}
       >
         {voc.translation}
       </Translation>
-      {!wasClicked && (
+      {!wasRated && (
         <>
           <WrongButton
             onClick={handleWrongClick}
@@ -67,10 +67,11 @@ export default function Card({ voc, handleHit, handleView, cardColor }) {
       )}
 
       <Slider
-        className={showTranslation ? "active" : ""}
         onClick={handleSliderClick}
         cardColor={cardColor}
         aria-label="Show translation"
+        showTranslation={showTranslation}
+        type="button"
       >
         <Image src={iconArrowRight} alt="Right arrow" />
       </Slider>
@@ -136,10 +137,7 @@ const Translation = styled.p`
   font-size: 0.9rem;
   line-height: 1.4;
   margin-right: 0.5rem;
-
-  &.hidden {
-    display: none;
-  }
+  display: ${({ showTranslation }) => (showTranslation ? "block" : "none")};
 `;
 
 const WrongButton = styled.button`
@@ -166,9 +164,10 @@ const HorizontalLine = styled.hr`
   width: 100%;
 `;
 
-const Slider = styled.div`
+const Slider = styled.button`
+  all: unset;
   grid-area: 6 / 4 / 3 / 1;
-  background-color: ${(props) => props.cardColor};
+  background-color: ${({ cardColor }) => cardColor};
   color: var(--white);
   display: flex;
   align-items: center;
@@ -178,8 +177,6 @@ const Slider = styled.div`
 
   transition: transform 500ms;
   transition-timing-function: cubic-bezier(0.15, 0.94, 1, 0.5);
-
-  &.active {
-    transform: translateX(100%);
-  }
+  transform: ${({ showTranslation }) =>
+    showTranslation ? "translateX(100%)" : ""};
 `;

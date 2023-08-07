@@ -84,12 +84,11 @@ const StyledCard = styled.li`
   color: var(--darktext);
   display: grid;
   grid-template-columns: 1fr 2rem 2rem;
-  grid-template-rows: 1fr 1fr 1px 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1px 2fr;
   grid-template-areas:
     "word views views"
     "word hits hits"
     "hr hr hr"
-    "translation wrong-button correct-button"
     "translation wrong-button correct-button";
   border-radius: 0.25rem;
   margin: 1rem auto;

@@ -10,8 +10,8 @@ import { vocs } from "../lib/db";
 import { accentColors } from "../styles";
 
 // States:
-const cardsToPick = 5;
-const hitsToWin = 3;
+const NUM_CARDS_TO_PICK = 5;
+const HITS_TO_WIN = 3;
 
 export default function Home() {
   const [cards, setCards] = useLocalStorageState("cards", {
@@ -19,44 +19,39 @@ export default function Home() {
   });
   const [playedIds, setPlayedIds] = useState([]);
 
-  // Shuffle the cards
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
+  // Shuffle all cards
   function shuffleCards() {
     setCards((prev) => prev.sort(() => 0.5 - Math.random()));
   }
 
-  // Derived from States:
-  const playCards = [
-    ...cards.filter((card) => {
-      return card.hits < hitsToWin && !playedIds.includes(card.id);
-    }),
-  ];
-
   // Reduces the length of 'playCards' array to limit the amount of rendered cards.
-  (function limitCardsToShow() {
-    const amountofPlayCards = playCards.length;
-    const amountOfCardsToShow = Math.max(0, cardsToPick - playedIds.length);
+  function limitCardsToShow(availableCards) {
+    const numberOfCardsToShow = Math.max(
+      0,
+      NUM_CARDS_TO_PICK - playedIds.length
+    );
+    return availableCards.slice(0, numberOfCardsToShow);
+  }
 
-    if (amountofPlayCards > amountOfCardsToShow) {
-      playCards.length = amountOfCardsToShow;
-    }
-  })();
-
+  // Adds card's ID zu playedCards Array and if answer is correct, increases a card's correct answer count by 1.
   function handleResult(id, answerIsCorrect) {
-    // Adds card's ID zu playedCards Array. If correct, increases a card's correct answer count by 1.
+    setPlayedIds((prevPlayedIds) => [...prevPlayedIds, id]);
+
     if (answerIsCorrect) {
       setCards((prev) =>
         prev.map((card) =>
           card.id === id ? { ...card, hits: card.hits + 1 } : card
         )
       );
-    } else {
-      console.log("Loser!");
     }
-    setPlayedIds((prevIds) => [...prevIds, id]);
   }
 
+  // Increases a card's views counter by 1.
   function handleView(id) {
-    // Increases the number of times the translation has been revealed by 1.
     setCards((prev) =>
       prev.map((card) =>
         card.id === id ? { ...card, views: card.views + 1 } : card
@@ -64,20 +59,24 @@ export default function Home() {
     );
   }
 
-  useEffect(() => {
-    shuffleCards();
-  }, []);
+  // Contains only the cards that have less "hits" than "HITS_TO_WIN"
+  // and that have not yet been played in the session
+  const availableCards = cards.filter((card) => {
+    return card.hits < HITS_TO_WIN && !playedIds.includes(card.id);
+  });
+
+  const cardsToShow = limitCardsToShow(availableCards);
 
   return (
     <>
       <Header />
       <StyledMain>
-        {playCards.length > 0 ? (
+        {cardsToShow.length > 0 ? (
           <Cardlist>
-            {playCards.map((playCard, index) => (
+            {cardsToShow.map((cardToShow, index) => (
               <Card
-                key={playCard.id}
-                voc={playCard}
+                key={cardToShow.id}
+                voc={cardToShow}
                 handleResult={handleResult}
                 handleView={handleView}
                 cardColor={accentColors[index % accentColors.length]}

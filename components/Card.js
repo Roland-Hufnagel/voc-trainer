@@ -175,8 +175,7 @@ const Slider = styled.button`
   margin: 0 -0.8rem -0.8rem;
   cursor: pointer;
 
-  transition: transform 500ms;
-  transition-timing-function: cubic-bezier(0.15, 0.94, 1, 0.5);
+  transition: transform 500ms cubic-bezier(0.15, 0.94, 1, 0.5);
   transform: ${({ showTranslation }) =>
     showTranslation ? "translateX(100%)" : ""};
 `;

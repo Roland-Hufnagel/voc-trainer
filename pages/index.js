@@ -1,31 +1,34 @@
-import Header from "../components/Header";
-import { vocs } from "../lib/db";
-import Card from "../components/Card";
-import styled from "styled-components";
-import Cardlist from "../components/Cardlist";
 import { useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
+import styled from "styled-components";
+
+import Header from "../components/Header";
+import Card from "../components/Card";
+import Cardlist from "../components/Cardlist";
+
+import { vocs } from "../lib/db";
+import { accentColors } from "../styles";
 
 // States:
-const cardsToPick = 5;
+const cardsToPick = 10;
 const hitsToWin = 3;
 
 export default function Home() {
   const [cards, setCards] = useLocalStorageState("cards", {
     defaultValue: vocs,
   });
-  
+
   // Derived from States:
   const playCards = [...cards.filter((card) => card.hits < hitsToWin)];
   playCards.length =
     cardsToPick > playCards.length ? playCards.length : cardsToPick;
-  
 
   function shuffleCards() {
     setCards((prev) => prev.sort(() => 0.5 - Math.random()));
   }
 
   function handleHit(id) {
+    // Increases a card's correct answer count by 1.
     setCards((prev) =>
       prev.map((card) =>
         card.id === id ? { ...card, hits: card.hits + 1 } : card
@@ -34,6 +37,7 @@ export default function Home() {
   }
 
   function handleView(id) {
+    // Increases the number of times the translation has been revealed by 1.
     setCards((prev) =>
       prev.map((card) =>
         card.id === id ? { ...card, views: card.views + 1 } : card
@@ -51,12 +55,13 @@ export default function Home() {
       <StyledMain>
         {playCards.length > 0 ? (
           <Cardlist>
-            {playCards.map((playCard) => (
+            {playCards.map((playCard, index) => (
               <Card
                 key={playCard.id}
                 voc={playCard}
                 handleHit={handleHit}
                 handleView={handleView}
+                cardColor={accentColors[index % accentColors.length]}
               />
             ))}
           </Cardlist>
@@ -68,5 +73,5 @@ export default function Home() {
   );
 }
 const StyledMain = styled.main`
-  margin-top: 2.5rem;
+  margin-top: 4.5rem;
 `;

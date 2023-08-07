@@ -165,7 +165,7 @@ const HorizontalLine = styled.hr`
 
 const Slider = styled.button`
   all: unset;
-  grid-area: 6 / 4 / 3 / 1;
+  grid-area: 5 / 4 / 3 / 1;
   background-color: ${({ cardColor }) => cardColor};
   color: var(--white);
   display: flex;

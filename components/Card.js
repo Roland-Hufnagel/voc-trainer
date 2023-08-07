@@ -7,7 +7,7 @@ import iconCross from "../public/assets/voc-trainer_icon_cross.png";
 
 import Image from "next/image";
 
-export default function Card({ voc, handleHit, handleView, cardColor }) {
+export default function Card({ voc, handleResult, handleView, cardColor }) {
   const [showTranslation, setShowTranslation] = useState(false);
   const [wasRated, setWasRated] = useState(false);
 
@@ -18,11 +18,12 @@ export default function Card({ voc, handleHit, handleView, cardColor }) {
 
   function handleCorrectClick() {
     setWasRated(true);
-    handleHit(voc.id);
+    handleResult(voc.id, true);
   }
 
   function handleWrongClick() {
     setWasRated(true);
+    handleResult(voc.id, false);
   }
 
   return (

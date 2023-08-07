@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <StyledHeader>
       <span>Voc-Trainer</span>
-      <StyledLogo src={tinyLogo} alt="Logo" width={49} height={46} />
+      <StyledLogo src={tinyLogo} alt="Logo" width={195} height={184} />
     </StyledHeader>
   );
 }

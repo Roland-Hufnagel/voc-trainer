@@ -9,26 +9,9 @@ import Cardlist from "../components/Cardlist";
 import { vocs } from "../lib/db";
 import { accentColors } from "../styles";
 
-import { accentColors2 } from "../styles";
-
 // States:
 const cardsToPick = 10;
 const hitsToWin = 3;
-const cardColors = generateCardColors(accentColors); // Are defined in styles.js
-
-function generateCardColors(colorArray) {
-  // Modifies the given color values ​​to appear like an infinite gradient. Returns an array of color values.
-  return [
-    ...colorArray,
-    ...colorArray.slice(1, colorArray.length - 1).reverse(),
-  ];
-}
-
-function assignCardColor(allCardColors, cardIndex) {
-  // Assigns the appropriate color to the component based on its position.
-  const colorIndex = cardIndex % allCardColors.length;
-  return allCardColors[colorIndex];
-}
 
 export default function Home() {
   const [cards, setCards] = useLocalStorageState("cards", {
@@ -78,8 +61,7 @@ export default function Home() {
                 voc={playCard}
                 handleHit={handleHit}
                 handleView={handleView}
-                //cardColor={assignCardColor(cardColors, index)}
-                cardColor={accentColors2[index % accentColors2.length]}
+                cardColor={accentColors[index % accentColors.length]}
               />
             ))}
           </Cardlist>

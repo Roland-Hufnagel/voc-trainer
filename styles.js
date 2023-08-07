@@ -16,14 +16,6 @@ export const accentColors = [
   "#b0e2eb",
   "#b1d5ec",
   "#b0c9eb",
-];
-
-export const accentColors2 = [
-  "#a9ead8",
-  "#ade7e2",
-  "#b0e2eb",
-  "#b1d5ec",
-  "#b0c9eb",
   "#b1d5ec",
   "#b0e2eb",
   "#ade7e2",

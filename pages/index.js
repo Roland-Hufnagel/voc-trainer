@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 import Header from "../components/Header";
 import Card from "../components/Card";
 import Cardlist from "../components/Cardlist";
+import { Button } from "../components/Button";
 
 import { vocs } from "../lib/db";
 import { accentColors } from "../styles";
@@ -19,12 +21,15 @@ export default function Home() {
   });
   const [playedIds, setPlayedIds] = useState([]);
 
+  const router = useRouter();
+
   useEffect(() => {
     shuffleCards();
   }, []);
 
   // Shuffle all cards
   function shuffleCards() {
+    setPlayedIds([]);
     setCards((prev) => prev.sort(() => 0.5 - Math.random()));
   }
 
@@ -83,8 +88,17 @@ export default function Home() {
               />
             ))}
           </Cardlist>
+        ) : playedIds.length > 0 ? (
+          <Button
+            type="button"
+            onClick={() => {
+              shuffleCards();
+            }}
+          >
+            Play again?
+          </Button>
         ) : (
-          <p>No vocabularies to learn. Please define some.</p>
+          <p>You got it 🚀! Please define some new vocabularies to go on learning.</p>
         )}
       </StyledMain>
     </>

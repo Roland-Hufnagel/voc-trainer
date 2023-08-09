@@ -8,6 +8,7 @@ import Cardlist from "../components/Cardlist";
 
 import { vocs } from "../lib/db";
 import { accentColors } from "../styles";
+import Form from "../components/Form";
 
 // States:
 const cardsToPick = 10;
@@ -52,7 +53,8 @@ export default function Home() {
   return (
     <>
       <Header />
-      <StyledMain>
+     
+      <StyledMain> <Form />
         {playCards.length > 0 ? (
           <Cardlist>
             {playCards.map((playCard, index) => (
@@ -73,5 +75,5 @@ export default function Home() {
   );
 }
 const StyledMain = styled.main`
-  margin-top: 4.5rem;
+margin: 0 auto;
 `;

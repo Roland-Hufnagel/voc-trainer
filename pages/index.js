@@ -29,10 +29,6 @@ export default function Home() {
 
   // Reduces the length of 'playCards' array to limit the amount of rendered cards.
   function limitCardsToShow(availableCards) {
-    const numberOfCardsToShow = Math.max(
-      0,
-      NUM_CARDS_TO_PICK - playedIds.length
-    );
     return availableCards.slice(0, numberOfCardsToShow);
   }
 

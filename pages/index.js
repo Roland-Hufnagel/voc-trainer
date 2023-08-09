@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
-import { useRouter } from "next/router";
 
 import Header from "../components/Header";
 import Card from "../components/Card";
@@ -20,8 +19,6 @@ export default function Home() {
     defaultValue: vocs,
   });
   const [playedIds, setPlayedIds] = useState([]);
-
-  const router = useRouter();
 
   useEffect(() => {
     shuffleCards();
@@ -94,12 +91,7 @@ export default function Home() {
             ))}
           </Cardlist>
         ) : playedIds.length > 0 ? (
-          <Button
-            type="button"
-            onClick={() => {
-              playNewGame();
-            }}
-          >
+          <Button type="button" onClick={playNewGame}>
             Play again?
           </Button>
         ) : (

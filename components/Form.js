@@ -3,11 +3,10 @@ function handleSubmit(event) {
   console.log("submit clicked");
 }
 
-export default function Form({ handleAddWord }) {
+export default function Form({ handleAddNewWord }) {
   function handleSubmit(event) {
-    console.log("---->", event.target.elements.translation.value);
     event.preventDefault();
-    handleAddWord(
+    handleAddNewWord(
       event.target.elements.word.value,
       event.target.elements.translation.value
     );
@@ -28,7 +27,9 @@ export default function Form({ handleAddWord }) {
         type="text"
         aria-label="translation input"
       />
-      <button type="submit">＋</button>
+      <button aria-label="submit" type="submit">
+        ＋
+      </button>
     </form>
   );
 }

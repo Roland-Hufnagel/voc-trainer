@@ -20,7 +20,7 @@ export default function Home() {
     defaultValue: vocs,
   });
 
-  function handleAddWord(word, translation) {
+  function handleAddNewWord(word, translation) {
     setCards((prev) => [
       ...prev,
       { id: nanoid(), word, translation, hits: 0, views: 0 },
@@ -64,7 +64,7 @@ export default function Home() {
 
       <StyledMain>
         {" "}
-        <Form handleAddWord={handleAddWord} />
+        <Form handleAddNewWord={handleAddNewWord} />
         {playCards.length > 0 ? (
           <Cardlist>
             {playCards.map((playCard, index) => (

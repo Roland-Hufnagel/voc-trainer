@@ -3,12 +3,10 @@ import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
 
 import Header from "../components/Header";
-import Card from "../components/Card";
 import Cardlist from "../components/Cardlist";
 import { Button } from "../components/Button";
 
 import { vocs } from "../lib/db";
-import { accentColors } from "../styles";
 
 // States:
 const NUM_CARDS_TO_PICK = 3;
@@ -73,23 +71,18 @@ export default function Home() {
   });
 
   const cardsToShow = limitCardsToShow(availableCards);
-
+  console.log("CardsToShow: ", cardsToShow.length);
+  console.log("AvailableCards: ", availableCards.length);
   return (
     <>
       <Header />
       <StyledMain>
         {cardsToShow.length > 0 ? (
-          <Cardlist>
-            {cardsToShow.map((cardToShow, index) => (
-              <Card
-                key={cardToShow.id}
-                voc={cardToShow}
-                handleResult={handleResult}
-                handleView={handleView}
-                cardColor={accentColors[index % accentColors.length]}
-              />
-            ))}
-          </Cardlist>
+          <Cardlist
+            cardsToShow={cardsToShow}
+            handleResult={handleResult}
+            handleView={handleView}
+          />
         ) : playedIds.length > 0 ? (
           <Button type="button" onClick={playNewGame}>
             Play again?

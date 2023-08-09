@@ -12,7 +12,7 @@ import { vocs } from "../lib/db";
 import { accentColors } from "../styles";
 
 // States:
-const NUM_CARDS_TO_PICK = 5;
+const NUM_CARDS_TO_PICK = 3;
 const HITS_TO_WIN = 3;
 
 export default function Home() {
@@ -29,7 +29,6 @@ export default function Home() {
 
   // Shuffle all cards
   function shuffleCards() {
-    setPlayedIds([]);
     setCards((prev) => prev.sort(() => 0.5 - Math.random()));
   }
 
@@ -64,6 +63,12 @@ export default function Home() {
     );
   }
 
+  // Starts a new game
+  function playNewGame() {
+    setPlayedIds([]);
+    shuffleCards();
+  }
+
   // Contains only the cards that have less "hits" than "HITS_TO_WIN"
   // and that have not yet been played in the session
   const availableCards = cards.filter((card) => {
@@ -92,13 +97,16 @@ export default function Home() {
           <Button
             type="button"
             onClick={() => {
-              shuffleCards();
+              playNewGame();
             }}
           >
             Play again?
           </Button>
         ) : (
-          <p>You got it 🚀! Please define some new vocabularies to go on learning.</p>
+          <p>
+            You got it 🚀! Please define some new vocabularies to go on
+            learning.
+          </p>
         )}
       </StyledMain>
     </>

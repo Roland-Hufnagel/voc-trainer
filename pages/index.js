@@ -63,7 +63,6 @@ export default function Home() {
       <Header />
 
       <StyledMain>
-        {" "}
         <Form handleAddNewWord={handleAddNewWord} />
         {playCards.length > 0 ? (
           <Cardlist>

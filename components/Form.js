@@ -1,8 +1,3 @@
-function handleSubmit(event) {
-  event.preventDefault();
-  console.log("submit clicked");
-}
-
 export default function Form({ handleAddNewWord }) {
   function handleSubmit(event) {
     event.preventDefault();
@@ -19,15 +14,15 @@ export default function Form({ handleAddNewWord }) {
         name="word"
         placeholder="...some word"
         type="text"
-        aria-label="word input"
+        aria-label="Enter a new word"
       />
       <input
         name="translation"
         placeholder="...translation"
         type="text"
-        aria-label="translation input"
+        aria-label="Enter the translation"
       />
-      <button aria-label="submit" type="submit">
+      <button aria-label="Add word to your vocabulary" type="submit">
         ＋
       </button>
     </form>

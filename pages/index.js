@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
+import { nanoid } from "nanoid";
 
 import Header from "../components/Header";
 import Card from "../components/Card";
@@ -8,15 +9,23 @@ import Cardlist from "../components/Cardlist";
 
 import { vocs } from "../lib/db";
 import { accentColors } from "../styles";
+import Form from "../components/Form";
 
 // States:
-const cardsToPick = 10;
+const cardsToPick = 4;
 const hitsToWin = 3;
 
 export default function Home() {
   const [cards, setCards] = useLocalStorageState("cards", {
     defaultValue: vocs,
   });
+
+  function handleAddNewWord(word, translation) {
+    setCards((prev) => [
+      ...prev,
+      { id: nanoid(), word, translation, hits: 0, views: 0 },
+    ]);
+  }
 
   // Derived from States:
   const playCards = [...cards.filter((card) => card.hits < hitsToWin)];
@@ -52,7 +61,9 @@ export default function Home() {
   return (
     <>
       <Header />
+
       <StyledMain>
+        <Form handleAddNewWord={handleAddNewWord} />
         {playCards.length > 0 ? (
           <Cardlist>
             {playCards.map((playCard, index) => (
@@ -73,5 +84,5 @@ export default function Home() {
   );
 }
 const StyledMain = styled.main`
-  margin-top: 4.5rem;
+  margin: 0 auto;
 `;

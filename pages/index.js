@@ -82,7 +82,7 @@ export default function Home() {
           </Button>
         ) : (
           <p>
-            You got it 🚀! Please define some new vocabularies to go on
+            You got it 🚀!!! Please define some new vocabularies to go on
             learning.
           </p>
         )}

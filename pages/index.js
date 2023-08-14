@@ -3,14 +3,13 @@ import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
 
 import Header from "../components/Header";
-import Card from "../components/Card";
 import Cardlist from "../components/Cardlist";
+import { Button } from "../components/Button";
 
 import { vocs } from "../lib/db";
-import { accentColors } from "../styles";
 
 // States:
-const NUM_CARDS_TO_PICK = 5;
+const NUM_CARDS_TO_PICK = 3;
 const HITS_TO_WIN = 3;
 
 export default function Home() {
@@ -30,11 +29,7 @@ export default function Home() {
 
   // Reduces the length of 'playCards' array to limit the amount of rendered cards.
   function limitCardsToShow(availableCards) {
-    const numberOfCardsToShow = Math.max(
-      0,
-      NUM_CARDS_TO_PICK - playedIds.length
-    );
-    return availableCards.slice(0, numberOfCardsToShow);
+    return availableCards.slice(0, NUM_CARDS_TO_PICK);
   }
 
   // Adds card's ID zu playedCards Array and if answer is correct, increases a card's correct answer count by 1.
@@ -59,32 +54,37 @@ export default function Home() {
     );
   }
 
+  // Starts a new game
+  function playNewGame() {
+    setPlayedIds([]);
+    shuffleCards();
+  }
+
   // Contains only the cards that have less "hits" than "HITS_TO_WIN"
   // and that have not yet been played in the session
   const availableCards = cards.filter((card) => {
     return card.hits < HITS_TO_WIN && !playedIds.includes(card.id);
   });
 
-  const cardsToShow = limitCardsToShow(availableCards);
-
   return (
     <>
       <Header />
       <StyledMain>
         {cardsToShow.length > 0 ? (
-          <Cardlist>
-            {cardsToShow.map((cardToShow, index) => (
-              <Card
-                key={cardToShow.id}
-                voc={cardToShow}
-                handleResult={handleResult}
-                handleView={handleView}
-                cardColor={accentColors[index % accentColors.length]}
-              />
-            ))}
-          </Cardlist>
+          <Cardlist
+            cardsToShow={cardsToShow}
+            handleResult={handleResult}
+            handleView={handleView}
+          />
+        ) : playedIds.length > 0 ? (
+          <Button type="button" onClick={playNewGame}>
+            Play again?
+          </Button>
         ) : (
-          <p>No vocabularies to learn. Please define some.</p>
+          <p>
+            You got it 🚀!!! Please define some new vocabularies to go on
+            learning.
+          </p>
         )}
       </StyledMain>
     </>

@@ -10,19 +10,21 @@ import Image from "next/image";
 export default function Card({ voc, handleResult, handleView, cardColor }) {
   const [showTranslation, setShowTranslation] = useState(false);
   const [isRated, setIsRated] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
 
   function handleSliderClick() {
     setShowTranslation(!showTranslation);
     handleView(voc.id);
   }
 
-  function handleRateClick(isCorrect) {
+  function handleRateClick(answeredCorrect) {
+    setIsCorrect(answeredCorrect);
     setIsRated(true);
-    handleResult(voc.id, isCorrect);
+    handleResult(voc.id, answeredCorrect);
   }
 
   return (
-    <StyledCard>
+    <StyledCard isRated={isRated} isCorrect={isCorrect}>
       <Word>{voc.word}</Word>
       <ViewsCount aria-label="Number of views:">
         <ViewsIcon>
@@ -76,7 +78,8 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
 }
 
 const StyledCard = styled.li`
-  background-color: white;
+  background-color: ${({ isRated, isCorrect }) =>
+    isRated ? (isCorrect ? transitionCorrect : transitionWrong) : "white"};
   color: var(--darktext);
   display: grid;
   grid-template-columns: 1fr 2rem 2rem;

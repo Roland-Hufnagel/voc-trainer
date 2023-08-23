@@ -45,7 +45,7 @@ export default function Home() {
 
     setTimeout(() => {
       setPlayedIds((prevPlayedIds) => [...prevPlayedIds, id]);
-    }, 1000);
+    }, 800);
   }
 
   // Increases a card's views counter by 1.

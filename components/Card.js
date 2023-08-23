@@ -79,7 +79,11 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
 
 const StyledCard = styled.li`
   background-color: ${({ isRated, isCorrect }) =>
-    isRated ? (isCorrect ? transitionCorrect : transitionWrong) : "white"};
+    isRated
+      ? isCorrect
+        ? "#A9EAD8"
+        : "#EAA9C4"
+      : "white"};
   color: var(--darktext);
   display: grid;
   grid-template-columns: 1fr 2rem 2rem;
@@ -96,6 +100,12 @@ const StyledCard = styled.li`
   width: 15rem;
   overflow: hidden;
   box-shadow: var(--boxshadow-secondary);
+
+  transition: transform 800ms ease, opacity 800ms ease,
+    background-color 500ms ease;
+  opacity: ${({ isRated }) => (isRated ? 0 : 1)};
+  transform: ${({ isRated, isCorrect }) =>
+    isRated ? (isCorrect ? "scale(1.2)" : "scale(0.8)") : "none"};
 `;
 
 const Word = styled.p`
@@ -177,7 +187,3 @@ const Slider = styled.button`
   transform: ${({ showTranslation }) =>
     showTranslation ? "translateX(100%)" : ""};
 `;
-
-const transitionWrong = "red";
-
-const transitionCorrect = "green";

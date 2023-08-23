@@ -16,14 +16,9 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
     handleView(voc.id);
   }
 
-  function handleCorrectClick() {
+  function handleRateClick(isCorrect) {
     setWasRated(true);
-    handleResult(voc.id, true);
-  }
-
-  function handleWrongClick() {
-    setWasRated(true);
-    handleResult(voc.id, false);
+    handleResult(voc.id, isCorrect);
   }
 
   return (
@@ -51,14 +46,14 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
       {!wasRated && (
         <>
           <WrongButton
-            onClick={handleWrongClick}
+            onClick={() => handleRateClick(false)}
             aria-label="Mark as wrong"
             type="button"
           >
             <Image src={iconCross} alt="Cross icon" width="18" />
           </WrongButton>
           <CorrectButton
-            onClick={handleCorrectClick}
+            onClick={() => handleRateClick(true)}
             aria-label="Mark as correct"
             type="button"
           >

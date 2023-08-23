@@ -29,7 +29,8 @@ export default function Home() {
 
   // Reduces the length of 'playCards' array to limit the amount of rendered cards.
   function limitCardsToShow(availableCards) {
-    return availableCards.slice(0, NUM_CARDS_TO_PICK);
+    const numberOfCardsToShow = NUM_CARDS_TO_PICK - playedIds.length;
+    return availableCards.slice(0, numberOfCardsToShow);
   }
 
   // Adds card's ID zu playedCards Array and if answer is correct, increases a card's correct answer count by 1.
@@ -67,7 +68,7 @@ export default function Home() {
   });
 
   const cardsToShow = limitCardsToShow(availableCards);
-  
+
   return (
     <>
       <Header />

@@ -66,6 +66,8 @@ export default function Home() {
     return card.hits < HITS_TO_WIN && !playedIds.includes(card.id);
   });
 
+  const cardsToShow = limitCardsToShow(availableCards);
+  
   return (
     <>
       <Header />

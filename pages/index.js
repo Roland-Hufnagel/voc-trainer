@@ -35,16 +35,15 @@ export default function Home() {
 
   // Adds card's ID zu playedCards Array and if answer is correct, increases a card's correct answer count by 1.
   function handleResult(id, answerIsCorrect) {
-    if (answerIsCorrect) {
-      setCards((prev) =>
-        prev.map((card) =>
-          card.id === id ? { ...card, hits: card.hits + 1 } : card
-        )
-      );
-    }
-
     setTimeout(() => {
       setPlayedIds((prevPlayedIds) => [...prevPlayedIds, id]);
+      if (answerIsCorrect) {
+        setCards((prev) =>
+          prev.map((card) =>
+            card.id === id ? { ...card, hits: card.hits} : card // 'card.hits' entspricht dem manipulierten Wert von voc.hits???
+          )
+        );
+      }
     }, 800);
   }
 

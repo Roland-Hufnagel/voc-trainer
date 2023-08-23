@@ -18,9 +18,12 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
   }
 
   function handleRateClick(answeredCorrect) {
-    setIsCorrect(answeredCorrect);
     setIsRated(true);
+    setIsCorrect(answeredCorrect);
     handleResult(voc.id, answeredCorrect);
+    if (answeredCorrect) {
+      voc.hits = voc.hits + 1; //kann man das so einfach machen?
+    }
   }
 
   return (

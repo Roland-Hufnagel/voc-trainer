@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function Card({ voc, handleResult, handleView, cardColor }) {
   const [showTranslation, setShowTranslation] = useState(false);
-  const [wasRated, setWasRated] = useState(false);
+  const [isRated, setIsRated] = useState(false);
 
   function handleSliderClick() {
     setShowTranslation(!showTranslation);
@@ -17,7 +17,7 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
   }
 
   function handleRateClick(isCorrect) {
-    setWasRated(true);
+    setIsRated(true);
     handleResult(voc.id, isCorrect);
   }
 
@@ -43,7 +43,7 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
       >
         {voc.translation}
       </Translation>
-      {!wasRated && (
+      {!isRated && (
         <>
           <WrongButton
             onClick={() => handleRateClick(false)}
@@ -174,3 +174,7 @@ const Slider = styled.button`
   transform: ${({ showTranslation }) =>
     showTranslation ? "translateX(100%)" : ""};
 `;
+
+const transitionWrong = "red";
+
+const transitionCorrect = "green";

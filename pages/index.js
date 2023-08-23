@@ -35,8 +35,6 @@ export default function Home() {
 
   // Adds card's ID zu playedCards Array and if answer is correct, increases a card's correct answer count by 1.
   function handleResult(id, answerIsCorrect) {
-    setPlayedIds((prevPlayedIds) => [...prevPlayedIds, id]);
-
     if (answerIsCorrect) {
       setCards((prev) =>
         prev.map((card) =>
@@ -44,6 +42,10 @@ export default function Home() {
         )
       );
     }
+
+    setTimeout(() => {
+      setPlayedIds((prevPlayedIds) => [...prevPlayedIds, id]);
+    }, 1000);
   }
 
   // Increases a card's views counter by 1.

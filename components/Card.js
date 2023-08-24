@@ -7,26 +7,24 @@ import iconCross from "../public/assets/voc-trainer_icon_cross.png";
 
 import Image from "next/image";
 
-export default function Card({ voc, handleHit, handleView, cardColor }) {
+export default function Card({ voc, handleResult, handleView, cardColor }) {
   const [showTranslation, setShowTranslation] = useState(false);
-  const [wasRated, setWasRated] = useState(false);
+  const [isRated, setIsRated] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
 
   function handleSliderClick() {
     setShowTranslation(!showTranslation);
     handleView(voc.id);
   }
 
-  function handleCorrectClick() {
-    setWasRated(true);
-    handleHit(voc.id);
-  }
-
-  function handleWrongClick() {
-    setWasRated(true);
+  function handleRateClick(answeredCorrect) {
+    setIsRated(true);
+    setIsCorrect(answeredCorrect);
+    handleResult(voc.id, answeredCorrect);
   }
 
   return (
-    <StyledCard>
+    <StyledCard isRated={isRated} isCorrect={isCorrect}>
       <Word>{voc.word}</Word>
       <ViewsCount aria-label="Number of views:">
         <ViewsIcon>
@@ -38,7 +36,7 @@ export default function Card({ voc, handleHit, handleView, cardColor }) {
         <HitsIcon>
           <Image src={iconCheckmark} alt="Checkmark icon" width="16" />
         </HitsIcon>
-        {voc.hits}
+        {isCorrect ? voc.hits + 1: voc.hits}
       </HitsCount>
       <HorizontalLine />
       <Translation
@@ -47,17 +45,17 @@ export default function Card({ voc, handleHit, handleView, cardColor }) {
       >
         {voc.translation}
       </Translation>
-      {!wasRated && (
+      {!isRated && (
         <>
           <WrongButton
-            onClick={handleWrongClick}
+            onClick={() => handleRateClick(false)}
             aria-label="Mark as wrong"
             type="button"
           >
             <Image src={iconCross} alt="Cross icon" width="18" />
           </WrongButton>
           <CorrectButton
-            onClick={handleCorrectClick}
+            onClick={() => handleRateClick(true)}
             aria-label="Mark as correct"
             type="button"
           >
@@ -80,7 +78,12 @@ export default function Card({ voc, handleHit, handleView, cardColor }) {
 }
 
 const StyledCard = styled.li`
-  background-color: white;
+  background-color: ${({ isRated, isCorrect }) =>
+    isRated
+      ? isCorrect
+        ? "#A9EAD8"
+        : "#EAA9C4"
+      : "white"};
   color: var(--darktext);
   display: grid;
   grid-template-columns: 1fr 2rem 2rem;
@@ -97,6 +100,12 @@ const StyledCard = styled.li`
   width: 15rem;
   overflow: hidden;
   box-shadow: var(--boxshadow-secondary);
+
+  transition: transform 800ms ease, opacity 800ms ease,
+    background-color 500ms ease;
+  opacity: ${({ isRated }) => (isRated ? 0 : 1)};
+  transform: ${({ isRated, isCorrect }) =>
+    isRated ? (isCorrect ? "scale(1.2)" : "scale(0.8)") : "none"};
 `;
 
 const Word = styled.p`

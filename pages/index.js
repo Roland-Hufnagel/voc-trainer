@@ -83,6 +83,4 @@ export default function Home() {
     </>
   );
 }
-const StyledMain = styled.main`
-  //margin: 0 auto;
-`;
+const StyledMain = styled.main``;

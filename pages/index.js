@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
+import { nanoid } from "nanoid";
 
 import Header from "../components/Header";
 import Cardlist from "../components/Cardlist";
 import { Button } from "../components/Button";
 
 import { vocs } from "../lib/db";
+import Form from "../components/Form";
 
 // States:
 const NUM_CARDS_TO_PICK = 3;
@@ -17,6 +19,13 @@ export default function Home() {
     defaultValue: vocs,
   });
   const [playedIds, setPlayedIds] = useState([]);
+
+  function handleAddNewWord(word, translation) {
+    setCards((prev) => [
+      ...prev,
+      { id: nanoid(), word, translation, hits: 0, views: 0 },
+    ]);
+  }
 
   useEffect(() => {
     shuffleCards();
@@ -73,7 +82,9 @@ export default function Home() {
   return (
     <>
       <Header />
+
       <StyledMain>
+        <Form handleAddNewWord={handleAddNewWord} />
         {cardsToShow.length > 0 ? (
           <Cardlist
             cardsToShow={cardsToShow}
@@ -94,6 +105,4 @@ export default function Home() {
     </>
   );
 }
-const StyledMain = styled.main`
-  margin-top: 4.5rem;
-`;
+const StyledMain = styled.main``;

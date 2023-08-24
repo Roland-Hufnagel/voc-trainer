@@ -39,11 +39,15 @@ export default function Form({ handleAddNewWord }) {
     </StyledForm>
   );
 }
-const StyledForm = styled.form``;
+const StyledForm = styled.form`
+display: flex;
+justify-content: center;
+`;
 const StyledButton = styled.button`
   padding: 0.5rem;
   border-radius: 0.5rem;
   font-size: 0.9rem;
+  margin: 0.2rem;
 `;
 const StyledInput = styled.input`
   line-height: 2rem;

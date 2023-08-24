@@ -29,20 +29,22 @@ export default function Home() {
 
   // Reduces the length of 'playCards' array to limit the amount of rendered cards.
   function limitCardsToShow(availableCards) {
-    return availableCards.slice(0, NUM_CARDS_TO_PICK);
+    const numberOfCardsToShow = NUM_CARDS_TO_PICK - playedIds.length;
+    return availableCards.slice(0, numberOfCardsToShow);
   }
 
   // Adds card's ID zu playedCards Array and if answer is correct, increases a card's correct answer count by 1.
   function handleResult(id, answerIsCorrect) {
-    setPlayedIds((prevPlayedIds) => [...prevPlayedIds, id]);
-
-    if (answerIsCorrect) {
-      setCards((prev) =>
-        prev.map((card) =>
-          card.id === id ? { ...card, hits: card.hits + 1 } : card
-        )
-      );
-    }
+    setTimeout(() => {
+      setPlayedIds((prevPlayedIds) => [...prevPlayedIds, id]);
+      if (answerIsCorrect) {
+        setCards((prev) =>
+          prev.map((card) =>
+            card.id === id ? { ...card, hits: card.hits + 1} : card 
+          )
+        );
+      }
+    }, 800);
   }
 
   // Increases a card's views counter by 1.
@@ -65,6 +67,8 @@ export default function Home() {
   const availableCards = cards.filter((card) => {
     return card.hits < HITS_TO_WIN && !playedIds.includes(card.id);
   });
+
+  const cardsToShow = limitCardsToShow(availableCards);
 
   return (
     <>

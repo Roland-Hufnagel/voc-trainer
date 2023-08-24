@@ -21,9 +21,6 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
     setIsRated(true);
     setIsCorrect(answeredCorrect);
     handleResult(voc.id, answeredCorrect);
-    if (answeredCorrect) {
-      voc.hits = voc.hits + 1; //kann man das so einfach machen?
-    }
   }
 
   return (
@@ -39,7 +36,7 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
         <HitsIcon>
           <Image src={iconCheckmark} alt="Checkmark icon" width="16" />
         </HitsIcon>
-        {voc.hits}
+        {isCorrect ? voc.hits + 1: voc.hits}
       </HitsCount>
       <HorizontalLine />
       <Translation

@@ -40,7 +40,7 @@ export default function Home() {
       if (answerIsCorrect) {
         setCards((prev) =>
           prev.map((card) =>
-            card.id === id ? { ...card, hits: card.hits} : card // 'card.hits' entspricht dem manipulierten Wert von voc.hits???
+            card.id === id ? { ...card, hits: card.hits + 1} : card 
           )
         );
       }

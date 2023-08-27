@@ -14,4 +14,6 @@ function Layout({ children }) {
 
 export default Layout;
 
-const StyledMain = styled.main``;
+const StyledMain = styled.main`
+  margin: 5rem auto 6rem auto;
+`;

@@ -53,10 +53,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: var(--background);
     font-family: var(--fontfamily-regular);
-    padding-top: 4rem;
   }
-
-
 `;
 
 export default GlobalStyles;

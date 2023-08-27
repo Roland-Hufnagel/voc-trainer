@@ -9,6 +9,7 @@ import { Button } from "../components/Button";
 
 import { vocs } from "../lib/db";
 import Form from "../components/Form";
+import NavigationBar from "../components/Navigation/NavigationBar";
 
 // States:
 const NUM_CARDS_TO_PICK = 3;
@@ -106,6 +107,7 @@ export default function Home() {
           </Container>
         )}
       </StyledMain>
+      <NavigationBar />
     </>
   );
 }

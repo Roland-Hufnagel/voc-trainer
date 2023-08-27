@@ -82,9 +82,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-
-      <StyledMain>
         <Form handleAddNewWord={handleAddNewWord} />
         {cardsToShow.length > 0 ? (
           <Cardlist
@@ -106,12 +103,10 @@ export default function Home() {
             </p>
           </Container>
         )}
-      </StyledMain>
-      <NavigationBar />
     </>
   );
 }
-const StyledMain = styled.main``;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;

@@ -37,7 +37,7 @@ const GlobalStyles = createGlobalStyle`
     --boxshadow-secondary: hsl(0 0% 0% / 25%) 0px 7px 6px -5px;
 
     --fontfamily-regular: ${inter.style.fontFamily};
-    --specialfontfamily-: ${cutive.style.fontFamily};
+    --fontfamily-special: ${cutive.style.fontFamily};
     
     font-size: 100%;     
       }

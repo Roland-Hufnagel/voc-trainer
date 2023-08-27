@@ -49,7 +49,7 @@ export default function Home() {
       if (answerIsCorrect) {
         setCards((prev) =>
           prev.map((card) =>
-            card.id === id ? { ...card, hits: card.hits + 1} : card 
+            card.id === id ? { ...card, hits: card.hits + 1 } : card
           )
         );
       }
@@ -92,17 +92,26 @@ export default function Home() {
             handleView={handleView}
           />
         ) : playedIds.length > 0 ? (
-          <Button type="button" onClick={playNewGame}>
-            Play again?
-          </Button>
+          <Container>
+            <Button type="button" onClick={playNewGame}>
+              Play again?
+            </Button>
+          </Container>
         ) : (
-          <p>
-            You got it 🚀!!! Please define some new vocabularies to go on
-            learning.
-          </p>
+          <Container>
+            <p>
+              You got it 🚀!!! Please define some new vocabularies to go on
+              learning.
+            </p>
+          </Container>
         )}
       </StyledMain>
     </>
   );
 }
 const StyledMain = styled.main``;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 3rem;
+`;

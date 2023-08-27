@@ -4,23 +4,21 @@ import NavigationItem from "./NavigationItem";
 export default function NavigationBar() {
   return (
     <nav>
-      <StyledNavigation>
+      <StyledNavigationItems>
         <NavigationItem path={"/"} pageName={"home"} />
         <NavigationItem path={"/words"} pageName={"words"} />
         <NavigationItem path={"/dashboard"} pageName={"dashboard"} />
-      </StyledNavigation>
+      </StyledNavigationItems>
     </nav>
   );
 }
 
-const StyledNavigation = styled.ul`
+const StyledNavigationItems = styled.ul`
   display: flex;
   justify-content: center;
-  gap: 1rem;
   position: fixed;
   bottom: 0;
   background-color: var(--white);
   width: 100%;
-  padding: 0.75rem;
   box-shadow: var(--boxshadow-primary);
 `;

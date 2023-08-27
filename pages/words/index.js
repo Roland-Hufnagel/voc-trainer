@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import iconCheckmark from "../../public/assets/voc-trainer_icon_checkmark.png";
 import iconEye from "../../public/assets/voc-trainer_icon_eye.png";
+import { BiEdit, BiSave, BiTrash, BiXCircle } from "react-icons/bi";
 
 export default function WordsPage({ cards, setCards }) {
   return (
@@ -23,7 +24,10 @@ export default function WordsPage({ cards, setCards }) {
               </HitsIcon>
             </div>
           </FirstColumn>
-          <SecondColumn></SecondColumn>
+          <SecondColumn>
+            <BiEdit fontSize="30"/>
+            <BiTrash fontSize="30"/>
+          </SecondColumn>
         </StyledListItem>
       ))}
     </ul>
@@ -40,6 +44,7 @@ const StyledListItem = styled.li`
   color: var(--darktext);
   box-shadow: var(--boxshadow-secondary);
   display: flex;
+  justify-content: space-between;
   margin: 1rem auto;
   padding: 0.5rem;
   width: 300px;
@@ -56,4 +61,6 @@ const FirstColumn = styled.section`
 const SecondColumn = styled.section`
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  //justify-content: space-between;
 `;

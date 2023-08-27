@@ -26,8 +26,7 @@ const StyledNavigationItem = styled.li`
   transition: 300ms ease-in-out;
 
   &:hover {
-    background-color: ${({ isActive }) =>
-      isActive ? "var(--gray-98)" : "var(--gray-95)"};
+    background-color: var(--gray-98);
   }
 
   svg {

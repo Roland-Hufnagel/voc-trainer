@@ -4,31 +4,33 @@ import HomeIcon from "../icons/HomeIcon";
 import WordsIcon from "../icons/WordsIcon";
 import DashboardIcon from "../icons/DashboardIcon";
 
+const ICON_WIDTH = "1.5rem";
+
 export default function NavigationBar() {
   return (
     <nav>
-      <StyledNavigationItems>
+      <NavigationItems>
         <NavigationItem
           path={"/"}
           pageName={"Home"}
-          icon={<HomeIcon width="1.5rem" height="1.5rem" />}
+          icon={<HomeIcon width={ICON_WIDTH} />}
         />
         <NavigationItem
           path={"/words"}
           pageName={"Words"}
-          icon={<WordsIcon width="1.5rem" height="1.5rem" />}
+          icon={<WordsIcon width={ICON_WIDTH} />}
         />
         <NavigationItem
           path={"/dashboard"}
           pageName={"Dashboard"}
-          icon={<DashboardIcon width="1.5rem" height="1.5rem" />}
+          icon={<DashboardIcon width={ICON_WIDTH} />}
         />
-      </StyledNavigationItems>
+      </NavigationItems>
     </nav>
   );
 }
 
-const StyledNavigationItems = styled.ul`
+const NavigationItems = styled.ul`
   display: flex;
   align-items: stretch;
   position: fixed;

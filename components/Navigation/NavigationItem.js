@@ -6,16 +6,16 @@ export default function NavigationItem({ path, pageName, icon }) {
   const { pathname } = useRouter();
 
   return (
-    <StyledNavigationItem isActive={pathname === path}>
+    <StyledListElement isActive={pathname === path}>
       <StyledLink href={path}>
         {icon}
         <p>{pageName}</p>
       </StyledLink>
-    </StyledNavigationItem>
+    </StyledListElement>
   );
 }
 
-const StyledNavigationItem = styled.li`
+const StyledListElement = styled.li`
   all: unset;
   flex: 1;
   padding: 1rem;

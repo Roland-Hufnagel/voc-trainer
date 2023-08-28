@@ -1,8 +1,8 @@
-export default function HomeIcon({ width, height, fillColor }) {
+export default function HomeIcon({ width, fillColor }) {
   return (
     <svg
       width={width}
-      height={height}
+      height="auto"
       viewBox="0 0 24 24"
       fill={fillColor}
       xmlns="http://www.w3.org/2000/svg"

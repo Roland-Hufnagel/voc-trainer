@@ -6,36 +6,36 @@ import { BiEdit, BiSave, BiTrash, BiXCircle } from "react-icons/bi";
 
 export default function WordsForm({ card }) {
   return (
-    <StyledListItem>
-      <FirstColumn>
+    <WordCard>
+      <Content>
         <p>{card.word}</p>
         <p>{card.translation}</p>
         <div>
-          <ViewsIcon>
+          <Views aria-label="Number of views">
             <Image src={iconEye} alt="Eye icon" width="18" />
             {card.views}
-          </ViewsIcon>
+          </Views>
 
-          <HitsIcon>
+          <Hits aria-label="Number of hits">
             <Image src={iconCheckmark} alt="Checkmark icon" width="18" />
             {card.hits}
-          </HitsIcon>
+          </Hits>
         </div>
-      </FirstColumn>
-      <SecondColumn>
+      </Content>
+      <Buttons>
         <BiEdit fontSize="30" />
         <BiTrash fontSize="30" />
-      </SecondColumn>
-    </StyledListItem>
+      </Buttons>
+    </WordCard>
   );
 }
-const ViewsIcon = styled.span`
+const Views = styled.span`
   margin-right: 1rem;
 `;
-const HitsIcon = styled.span`
+const Hits = styled.span`
   margin: 0 1rem;
 `;
-const StyledListItem = styled.li`
+const WordCard = styled.li`
   background-color: white;
   color: var(--darktext);
   box-shadow: var(--boxshadow-secondary);
@@ -48,13 +48,13 @@ const StyledListItem = styled.li`
     margin-right: 1rem;
   }
 `;
-const FirstColumn = styled.section`
+const Content = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 0.3rem;
 `;
-const SecondColumn = styled.section`
+const Buttons = styled.section`
   display: flex;
   flex-direction: column;
   gap: 10px;

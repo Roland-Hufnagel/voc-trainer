@@ -3,13 +3,11 @@ import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
 
-import Header from "../components/Header";
 import Cardlist from "../components/Cardlist";
 import { Button } from "../components/Button";
 
 import { vocs } from "../lib/db";
 import Form from "../components/Form";
-import NavigationBar from "../components/Navigation/NavigationBar";
 
 // States:
 const NUM_CARDS_TO_PICK = 3;

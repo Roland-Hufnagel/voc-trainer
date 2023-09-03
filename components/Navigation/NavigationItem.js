@@ -23,7 +23,7 @@ const StyledListElement = styled.li`
     isActive ? "var(--gray-light)" : "none"};
   color: ${({ isActive }) =>
     isActive ? "var(--link-active)" : "var(--link-inactive)"};
-  transition: 300ms ease-in-out;
+  transition: background-color 300ms ease-in-out;
 
   &:hover {
     background-color: var(--gray-98);

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import NavigationItem from "./NavigationItem";
 import HomeIcon from "../icons/HomeIcon";
 import WordsIcon from "../icons/WordsIcon";
@@ -11,18 +12,18 @@ export default function NavigationBar() {
     <nav>
       <NavigationItems>
         <NavigationItem
-          path={"/"}
-          pageName={"Home"}
+          path="/"
+          pageName="Home"
           icon={<HomeIcon width={ICON_WIDTH} />}
         />
         <NavigationItem
-          path={"/words"}
-          pageName={"Words"}
+          path="/words"
+          pageName="Words"
           icon={<WordsIcon width={ICON_WIDTH} />}
         />
         <NavigationItem
-          path={"/dashboard"}
-          pageName={"Dashboard"}
+          path="/dashboard"
+          pageName="Dashboard"
           icon={<DashboardIcon width={ICON_WIDTH} />}
         />
       </NavigationItems>

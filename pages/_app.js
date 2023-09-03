@@ -1,5 +1,6 @@
 import GlobalStyle from "../styles";
 import Head from "next/head";
+import Layout from "../components/Layout";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -8,7 +9,9 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Voc-Trainer</title>
       </Head>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   );
 }

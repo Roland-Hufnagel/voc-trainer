@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
 
-import Header from "../components/Header";
 import Cardlist from "../components/Cardlist";
 import { Button } from "../components/Button";
 
@@ -76,9 +75,6 @@ export default function Home({ cards, setCards }) {
 
   return (
     <>
-      <Header />
-
-      <StyledMain>
         <Form handleAddNewWord={handleAddNewWord} />
         {cardsToShow.length > 0 ? (
           <Cardlist
@@ -100,11 +96,10 @@ export default function Home({ cards, setCards }) {
             </p>
           </Container>
         )}
-      </StyledMain>
     </>
   );
 }
-const StyledMain = styled.main``;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;

@@ -1,7 +1,11 @@
 import GlobalStyle from "../styles";
 import Head from "next/head";
+
 import useLocalStorageState from "use-local-storage-state";
 import { vocs } from "../lib/db";
+
+import Layout from "../components/Layout";
+
 
 export default function App({ Component, pageProps }) {
   const [cards, setCards] = useLocalStorageState("cards", {
@@ -13,7 +17,10 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Voc-Trainer</title>
       </Head>
-      <Component {...pageProps} {...{ cards, setCards }} />
+
+      <Layout>
+        <Component {...pageProps} {...{ cards, setCards }} />
+      </Layout>
     </>
   );
 }

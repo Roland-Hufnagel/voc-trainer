@@ -27,6 +27,11 @@ const GlobalStyles = createGlobalStyle`
     --darktext: #27273a;
     --background: #f5f7fd;
     --gray-light: #ebebf3;
+    --gray-95: #ebebf2;
+    --gray-98: #f2f2fa;
+
+    --link-active: #27273a;
+    --link-inactive: #8f8f99;
 
     --boxshadow-primary: hsl(0 0% 0% / 15%) 0px 2px 12px 0px;
     --boxshadow-secondary: hsl(0 0% 0% / 25%) 0px 7px 6px -5px;
@@ -48,10 +53,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: var(--background);
     font-family: var(--fontfamily-regular);
-    padding-top: 4rem;
   }
-
-
 `;
 
 export default GlobalStyles;

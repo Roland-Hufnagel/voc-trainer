@@ -1,22 +1,17 @@
 import { useEffect, useState } from "react";
-import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
 
 import Cardlist from "../components/Cardlist";
 import { Button } from "../components/Button";
 
-import { vocs } from "../lib/db";
 import Form from "../components/Form";
 
 // States:
 const NUM_CARDS_TO_PICK = 3;
 const HITS_TO_WIN = 3;
 
-export default function Home() {
-  const [cards, setCards] = useLocalStorageState("cards", {
-    defaultValue: vocs,
-  });
+export default function Home({ cards, setCards }) {
   const [playedIds, setPlayedIds] = useState([]);
 
   function handleAddNewWord(word, translation) {

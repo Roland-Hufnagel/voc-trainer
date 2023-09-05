@@ -9,7 +9,6 @@ import { Button } from "../components/Button";
 
 import { vocs } from "../lib/db";
 import Form from "../components/Form";
-import Modal from "../components/Modal";
 
 // States:
 const NUM_CARDS_TO_PICK = 13;
@@ -20,7 +19,6 @@ export default function Home() {
     defaultValue: vocs,
   });
   const [playedIds, setPlayedIds] = useState([]);
-  const [showModal, setShowModal] = useState(false);
   function handleAddNewWord(word, translation) {
     setCards((prev) => [
       ...prev,
@@ -82,24 +80,9 @@ export default function Home() {
 
   return (
     <>
-      {showModal && (
-        <Modal
-          handleClose={() => {
-            setShowModal(false);
-          }}
-        >
-          <h1>Hello World</h1>
-        </Modal>
-      )}
-
-      
       <Header />
 
-      <StyledMain
-        onClick={() => {
-          setShowModal(true);
-        }}
-      >
+      <StyledMain>
         <Form handleAddNewWord={handleAddNewWord} />
         {cardsToShow.length > 0 ? (
           <Cardlist

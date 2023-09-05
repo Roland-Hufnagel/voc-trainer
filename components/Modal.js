@@ -7,7 +7,9 @@ export default function Modal({ handleClose, children }) {
       <CloseButton aria-label="close modal">
         <ImCancelCircle size="30" />
       </CloseButton>
-      <Foreground onClick={(event) => event.stopPropagation()}>{children}</Foreground>
+      <Foreground onClick={(event) => event.stopPropagation()}>
+        {children}
+      </Foreground>
     </Background>
   );
 }
@@ -35,8 +37,8 @@ const Background = styled.div`
   align-content: center;
 `;
 const Foreground = styled.div`
-  background-color: white;
-  border-radius: 0.5rem;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
   padding: 1rem;
   box-shadow: var(--boxshadow-primary);
 `;

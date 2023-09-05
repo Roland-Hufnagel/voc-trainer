@@ -8,12 +8,11 @@ import { Button } from "../components/Button";
 import Form from "../components/Form";
 
 // States:
-const NUM_CARDS_TO_PICK = 3;
+const NUM_CARDS_TO_PICK = 13;
 const HITS_TO_WIN = 3;
 
 export default function Home({ cards, setCards }) {
   const [playedIds, setPlayedIds] = useState([]);
-
   function handleAddNewWord(word, translation) {
     setCards((prev) => [
       ...prev,

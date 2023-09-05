@@ -38,6 +38,8 @@ const GlobalStyles = createGlobalStyle`
 
     --fontfamily-regular: ${inter.style.fontFamily};
     --fontfamily-special: ${cutive.style.fontFamily};
+
+    --border-radius: 0.25rem;
     
     font-size: 100%;     
       }

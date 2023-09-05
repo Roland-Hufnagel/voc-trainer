@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Image from "next/image";
-
 import tinyLogo from "../public/assets/voc-trainer_logo_tiny.png";
 
 export default function Header() {

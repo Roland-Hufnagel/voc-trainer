@@ -4,16 +4,21 @@ import NavigationBar from "./Navigation/NavigationBar";
 
 function Layout({ children }) {
   return (
-    <>
+    <AppContainer>
       <Header />
       <StyledMain>{children}</StyledMain>
       <NavigationBar />
-    </>
+    </AppContainer>
   );
 }
 
 export default Layout;
-
+const AppContainer = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 5rem 1fr 5rem;
+`;
 const StyledMain = styled.main`
-  margin: 5rem auto 6rem auto;
+  overflow-y: auto;
+  padding: 0.5rem;
 `;

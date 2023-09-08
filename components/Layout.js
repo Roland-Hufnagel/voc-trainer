@@ -16,7 +16,7 @@ export default Layout;
 const AppContainer = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-rows: 3.6rem 1fr 5rem;
 `;
 const StyledMain = styled.main`
   overflow-y: auto;

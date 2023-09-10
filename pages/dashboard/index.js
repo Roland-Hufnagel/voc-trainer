@@ -1,16 +1,22 @@
 import styled from "styled-components";
 
+import Modal from "../../components/Modal";
+
 export default function Dashboard({ settings }) {
+  function handleEdit(settingName) {
+    console.log("EDIT", settingName);
+  }
+
   return (
     <>
       <h2>Settings</h2>
-
       <SettingsList>
         {settings.map(({ name, label, value }) => {
           return (
             <SettingCard key={name}>
               <p>{label}</p>
               <p>{value}</p>
+              <button onClick={() => handleEdit(name)}>edit</button>
             </SettingCard>
           );
         })}

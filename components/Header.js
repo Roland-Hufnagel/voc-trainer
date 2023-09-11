@@ -20,9 +20,8 @@ const StyledHeader = styled.header`
   text-align: center;
   font-family: var(--fontfamily-special);
   font-size: 1.3rem;
-  position: fixed;
-  top: 0;
   width: 100%;
+  z-index: 100;
   box-shadow: var(--boxshadow-primary);
 
   & span {

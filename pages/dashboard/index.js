@@ -3,6 +3,9 @@ import styled from "styled-components";
 import Modal from "../../components/Modal";
 import Button from "../../components/Button";
 import EditIcon from "../../components/icons/EditIcon";
+import CancelIcon from "../../components/icons/CancelIcon";
+import SaveIcon from "../../components/icons/SaveIcon";
+
 
 export default function Dashboard({ settings, setSettings }) {
   const [showModal, setShowModal] = useState(false);
@@ -66,8 +69,8 @@ export default function Dashboard({ settings, setSettings }) {
             autoFocus
             onChange={(event) => handleChange(event)}
           />
-          <Button text="Cancel" onClick={closeModal} />
-          <Button text="Save" onClick={() => saveChangedSetting(editSetting)} />
+          <Button text="Cancel" onClick={closeModal} icon={CancelIcon} />
+          <Button text="Save" onClick={() => saveChangedSetting(editSetting)} icon={SaveIcon} />
         </Modal>
       )}
     </>

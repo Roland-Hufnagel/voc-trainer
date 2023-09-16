@@ -45,29 +45,28 @@ export default function Dashboard({ settings, setSettings }) {
                 <p>{value}</p>
                 <button onClick={() => handleEdit(setting)}>edit</button>
               </SettingCard>
-              {showModal && (
-                <Modal handleClose={() => saveChangedSetting(editSetting)}>
-                  <p>{editSetting.label}</p>
-                  <input
-                    type="number"
-                    value={editSetting.value}
-                    onChange={(event) => handleChange(event)}
-                  />
-                  <button type="button" onClick={closeModal}>
-                    cancel
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => saveChangedSetting(editSetting)}
-                  >
-                    save
-                  </button>
-                </Modal>
-              )}
             </div>
           );
         })}
       </SettingsList>
+
+      {showModal && (
+        <Modal handleClose={closeModal}>
+          <p>{editSetting.label}</p>
+          <input
+            type="number"
+            value={editSetting.value}
+            autoFocus="true"
+            onChange={(event) => handleChange(event)}
+          />
+          <button type="button" onClick={closeModal}>
+            cancel
+          </button>
+          <button type="button" onClick={() => saveChangedSetting(editSetting)}>
+            save
+          </button>
+        </Modal>
+      )}
     </>
   );
 }

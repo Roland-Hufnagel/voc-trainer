@@ -27,9 +27,12 @@ export default function Dashboard({ settings, setSettings }) {
   }
 
   function handleChange(event) {
-    setEditSetting((prevSetting) => {
-      return { ...prevSetting, value: event.target.value };
-    });
+    const regex = /^[1-9][0-9]*$/;
+    if (regex.test(event.target.value)) {
+      setEditSetting((prevSetting) => {
+        return { ...prevSetting, value: event.target.value };
+      });
+    }
   }
 
   return (

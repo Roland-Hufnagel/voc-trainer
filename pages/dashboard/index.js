@@ -6,19 +6,9 @@ export default function Dashboard({ settings, setSettings }) {
   const [showModal, setShowModal] = useState(false);
   const [editSetting, setEditSetting] = useState({});
 
-  function handleEdit(setting) {
+  function handleEditSetting(setting) {
     setShowModal(true);
     setEditSetting(setting);
-  }
-
-  function closeModal() {
-    setShowModal(false);
-  }
-
-  function handleChange(event) {
-    setEditSetting((prevSetting) => {
-      return { ...prevSetting, value: event.target.value };
-    });
   }
 
   function saveChangedSetting(setting) {
@@ -32,6 +22,16 @@ export default function Dashboard({ settings, setSettings }) {
     closeModal();
   }
 
+  function closeModal() {
+    setShowModal(false);
+  }
+
+  function handleChange(event) {
+    setEditSetting((prevSetting) => {
+      return { ...prevSetting, value: event.target.value };
+    });
+  }
+
   return (
     <>
       <h2>Settings</h2>
@@ -39,13 +39,11 @@ export default function Dashboard({ settings, setSettings }) {
         {settings.map((setting) => {
           const { name, label, value } = setting;
           return (
-            <div key={name}>
-              <SettingCard>
-                <p>{label}</p>
-                <p>{value}</p>
-                <button onClick={() => handleEdit(setting)}>edit</button>
-              </SettingCard>
-            </div>
+            <SettingCard key={name}>
+              <p>{label}</p>
+              <p>{value}</p>
+              <button onClick={() => handleEditSetting(setting)}>edit</button>
+            </SettingCard>
           );
         })}
       </SettingsList>
@@ -56,7 +54,7 @@ export default function Dashboard({ settings, setSettings }) {
           <input
             type="number"
             value={editSetting.value}
-            autoFocus="true"
+            autoFocus
             onChange={(event) => handleChange(event)}
           />
           <button type="button" onClick={closeModal}>

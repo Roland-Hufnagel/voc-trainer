@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Modal from "../../components/Modal";
+import Button from "../../components/Button";
+import EditIcon from "../../components/icons/EditIcon";
 
 export default function Dashboard({ settings, setSettings }) {
   const [showModal, setShowModal] = useState(false);
@@ -45,7 +47,11 @@ export default function Dashboard({ settings, setSettings }) {
             <SettingCard key={name}>
               <p>{label}</p>
               <p>{value}</p>
-              <button onClick={() => handleEditSetting(setting)}>edit</button>
+              <Button
+                onClick={() => handleEditSetting(setting)}
+                text="Edit"
+                icon={EditIcon}
+              />
             </SettingCard>
           );
         })}
@@ -60,12 +66,8 @@ export default function Dashboard({ settings, setSettings }) {
             autoFocus
             onChange={(event) => handleChange(event)}
           />
-          <button type="button" onClick={closeModal}>
-            cancel
-          </button>
-          <button type="button" onClick={() => saveChangedSetting(editSetting)}>
-            save
-          </button>
+          <Button text="Cancel" onClick={closeModal} />
+          <Button text="Save" onClick={() => saveChangedSetting(editSetting)} />
         </Modal>
       )}
     </>

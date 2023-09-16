@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { nanoid } from "nanoid";
 
 import Cardlist from "../components/Cardlist";
-import { Button } from "../components/Button";
+import Button from "../components/Button";
+import HomeIcon from "../components/icons/HomeIcon";
 
 import Form from "../components/Form";
 
@@ -88,9 +89,7 @@ export default function Home({ cards, setCards, settings }) {
         />
       ) : playedIds.length > 0 ? (
         <Container>
-          <Button type="button" onClick={playNewGame}>
-            Play again?
-          </Button>
+          <Button text="Play again?" onClick={playNewGame} />
         </Container>
       ) : (
         <Container>

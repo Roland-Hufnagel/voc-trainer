@@ -33,6 +33,9 @@ const GlobalStyles = createGlobalStyle`
     --link-active: #27273a;
     --link-inactive: #8f8f99;
 
+    --button: #27273a;
+    --button-hover: #8f8f99;
+
     --boxshadow-primary: hsl(0 0% 0% / 15%) 0px 2px 12px 0px;
     --boxshadow-secondary: hsl(0 0% 0% / 25%) 0px 7px 6px -5px;
 

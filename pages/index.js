@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 
 import Cardlist from "../components/Cardlist";
 import Button from "../components/Button";
-import HomeIcon from "../components/icons/HomeIcon";
+import ResetIcon from "../components/icons/ResetIcon"
 
 import Form from "../components/Form";
 
@@ -89,7 +89,7 @@ export default function Home({ cards, setCards, settings }) {
         />
       ) : playedIds.length > 0 ? (
         <Container>
-          <Button text="Play again?" onClick={playNewGame} />
+          <Button text="Play again" onClick={playNewGame} icon={ResetIcon} large />
         </Container>
       ) : (
         <Container>

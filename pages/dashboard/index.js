@@ -7,10 +7,9 @@ export default function Dashboard({ settings, handleChangeSettings }) {
       <h2>Settings</h2>
       <SettingsList>
         {settings.map((setting) => {
-          const { name, label, value } = setting;
           return (
             <SettingCard
-              key={name}
+              key={setting.name}
               setting={setting}
               handleChangeSettings={handleChangeSettings}
             />

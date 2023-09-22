@@ -26,6 +26,13 @@ export default function App({ Component, pageProps }) {
   const [settings, setSettings] = useLocalStorageState("voc_settings", {
     defaultValue: initialSettings,
   });
+  function handleChangeSettings(name, newValue) {
+    setSettings((prev) => {
+      return prev.map((setting) =>
+        setting.name === name ? { ...setting, value: newValue } : setting
+      );
+    });
+  }
 
   return (
     <>
@@ -38,7 +45,7 @@ export default function App({ Component, pageProps }) {
       <Layout>
         <Component
           {...pageProps}
-          {...{ cards, setCards, settings, setSettings }}
+          {...{ cards, setCards, settings, handleChangeSettings }}
         />
       </Layout>
     </>

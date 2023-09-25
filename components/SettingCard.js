@@ -83,7 +83,7 @@ const StyledInput = styled.input`
    &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
     appearance: none;
-    margin: 0;
+    margin: 0;}
 `;
 
 const StyledButtonContainer = styled.div`

@@ -3,16 +3,22 @@ import styled from "styled-components";
 import { nanoid } from "nanoid";
 
 import Cardlist from "../components/Cardlist";
-import { Button } from "../components/Button";
+import Button from "../components/Button";
+import ResetIcon from "../components/icons/ResetIcon"
 
 import Form from "../components/Form";
 
 // States:
-const NUM_CARDS_TO_PICK = 13;
-const HITS_TO_WIN = 3;
 
-export default function Home({ cards, setCards }) {
+export default function Home({ cards, setCards, settings }) {
   const [playedIds, setPlayedIds] = useState([]);
+  const NUM_CARDS_TO_PICK = settings.find(
+    (setting) => setting.name === "numCardsToPick"
+  ).value;
+  const HITS_TO_WIN = settings.find(
+    (setting) => setting.name === "hitsToWin"
+  ).value;
+
   function handleAddNewWord(word, translation) {
     setCards((prev) => [
       ...prev,
@@ -74,27 +80,25 @@ export default function Home({ cards, setCards }) {
 
   return (
     <>
-        <Form handleAddNewWord={handleAddNewWord} />
-        {cardsToShow.length > 0 ? (
-          <Cardlist
-            cardsToShow={cardsToShow}
-            handleResult={handleResult}
-            handleView={handleView}
-          />
-        ) : playedIds.length > 0 ? (
-          <Container>
-            <Button type="button" onClick={playNewGame}>
-              Play again?
-            </Button>
-          </Container>
-        ) : (
-          <Container>
-            <p>
-              You got it 🚀!!! Please define some new vocabularies to go on
-              learning.
-            </p>
-          </Container>
-        )}
+      <Form handleAddNewWord={handleAddNewWord} />
+      {cardsToShow.length > 0 ? (
+        <Cardlist
+          cardsToShow={cardsToShow}
+          handleResult={handleResult}
+          handleView={handleView}
+        />
+      ) : playedIds.length > 0 ? (
+        <Container>
+          <Button text="Play again" onClick={playNewGame} icon={ResetIcon} large />
+        </Container>
+      ) : (
+        <Container>
+          <p>
+            You got it 🚀!!! Please define some new vocabularies to go on
+            learning.
+          </p>
+        </Container>
+      )}
     </>
   );
 }

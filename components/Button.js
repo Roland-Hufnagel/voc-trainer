@@ -31,6 +31,7 @@ const largeButtonStyles = css`
 const StyledButton = styled.button`
   all: unset;
   cursor: pointer;
+  height: 1.35rem;
   display: flex;
   align-items: center;
   border: solid var(--button);

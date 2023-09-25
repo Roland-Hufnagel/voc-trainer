@@ -31,21 +31,23 @@ export default function SettingCard({ setting, handleChangeSettings }) {
       </StyledSettingCard>
       {showModal && (
         <Modal handleClose={() => setShowModal(false)}>
-          <form onSubmit={handleChange}>
+          <StyledForm onSubmit={handleChange}>
             <p>{setting.label}</p>
-            <input
+            <StyledInput
               name="setting"
               type="number"
               defaultValue={setting.value}
               autoFocus
             />
-            <Button
-              text="Cancel"
-              onClick={() => setShowModal(false)}
-              icon={CancelIcon}
-            />
-            <Button text="Save" icon={SaveIcon} />
-          </form>
+            <StyledButtonContainer>
+              <Button
+                text="Cancel"
+                onClick={() => setShowModal(false)}
+                icon={CancelIcon}
+              />
+              <Button text="Save" icon={SaveIcon} />
+            </StyledButtonContainer>
+          </StyledForm>
         </Modal>
       )}
     </>
@@ -60,4 +62,33 @@ const StyledSettingCard = styled.li`
   box-shadow: var(--boxshadow-secondary);
   display: flex;
   gap: 1rem;
+`;
+
+const StyledForm = styled.form`
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+`;
+
+const StyledInput = styled.input`
+  line-height: 1.6rem;
+  width: 4rem;
+  border-radius: 5px;
+  margin: 0.2rem;
+  padding: 0.2rem 0.4rem;
+  font-size: 2rem;
+  text-align: center;
+
+   /* Disable the increment and decrement buttons for number input */
+   &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+`;
+
+const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+
 `;

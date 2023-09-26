@@ -36,6 +36,7 @@ export default function SettingCard({ setting, handleChangeSettings }) {
             <StyledInput
               name="setting"
               type="number"
+              min="1"
               defaultValue={setting.value}
               autoFocus
             />
@@ -45,7 +46,7 @@ export default function SettingCard({ setting, handleChangeSettings }) {
                 onClick={() => setShowModal(false)}
                 icon={CancelIcon}
               />
-              <Button text="Save" icon={SaveIcon} />
+              <Button text="Save" icon={SaveIcon} type="submit" />
             </StyledButtonContainer>
           </StyledForm>
         </Modal>
@@ -72,7 +73,7 @@ const StyledForm = styled.form`
 
 const StyledInput = styled.input`
   line-height: 1.6rem;
-  width: 4rem;
+  width: 3rem;
   border-radius: 5px;
   margin: 0.2rem;
   padding: 0.2rem 0.4rem;
@@ -80,10 +81,12 @@ const StyledInput = styled.input`
   text-align: center;
 
    /* Disable the increment and decrement buttons for number input */
-   &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    appearance: none;
-    margin: 0;}
+   &::-webkit-inner-spin-button
+   // &::-webkit-outer-spin-button
+    {
+    -webkit-appearance: none;
+    //margin: 0;
+  }
 `;
 
 const StyledButtonContainer = styled.div`

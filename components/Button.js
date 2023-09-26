@@ -3,11 +3,11 @@ import styled, { css } from "styled-components";
 const SMALL_ICON_SIZE = "20";
 const LARGE_ICON_SIZE = "28";
 
-export default function Button({ text, onClick, icon: Icon, large }) {
+export default function Button({ text, onClick, icon: Icon, large, type = "button"}) {
   const iconSize = large ? LARGE_ICON_SIZE : SMALL_ICON_SIZE;
 
   return (
-    <StyledButton onClick={onClick} large={large}>
+    <StyledButton onClick={onClick} large={large} type={type}>
       {Icon && <Icon width={iconSize} />}
       <span>{text}</span>
     </StyledButton>

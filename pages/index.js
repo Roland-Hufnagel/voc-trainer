@@ -10,7 +10,7 @@ import Form from "../components/Form";
 
 // States:
 
-export default function Home({ cards, setCards, settings }) {
+export default function Home({ cards, setCards, settings, handleAddNewWord }) {
   const [playedIds, setPlayedIds] = useState([]);
   const NUM_CARDS_TO_PICK = settings.find(
     (setting) => setting.name === "numCardsToPick"
@@ -19,21 +19,9 @@ export default function Home({ cards, setCards, settings }) {
     (setting) => setting.name === "hitsToWin"
   ).value;
 
-  function handleAddNewWord(word, translation) {
-    setCards((prev) => [
-      ...prev,
-      { id: nanoid(), word, translation, hits: 0, views: 0 },
-    ]);
-  }
 
-  useEffect(() => {
-    shuffleCards();
-  }, []);
 
-  // Shuffle all cards
-  function shuffleCards() {
-    setCards((prev) => prev.sort(() => 0.5 - Math.random()));
-  }
+
 
   // Reduces the length of 'playCards' array to limit the amount of rendered cards.
   function limitCardsToShow(availableCards) {

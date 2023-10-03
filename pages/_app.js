@@ -20,9 +20,9 @@ export default function App({ Component, pageProps }) {
       );
     });
   }
-  function handleChangeCard(newCard) {
+  function handleChangeCard(updatedCard) {
     setCards((prev) =>
-      prev.map((card) => (card.id === newCard.id ? newCard : card))
+      prev.map((card) => (card.id === updatedCard.id ? updatedCard : card))
     );
   }
   function handleDeleteCard(id) {

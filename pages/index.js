@@ -1,23 +1,12 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { nanoid } from "nanoid";
-
 import Cardlist from "../components/Cardlist";
 import Button from "../components/Button";
 import ResetIcon from "../components/icons/ResetIcon";
-
 import Form from "../components/Form";
 
-// States:
 
-export default function Home({ cardsToShow, handleResult, handleView, settings, handleAddNewWord, playNewGame, playedIds }) {
+export default function Home({ cardsToShow, handleResult, handleView, handleAddNewWord, playNewGame, playedIds }) {
  
-
-
-
-
-
-
   return (
     <>
       <Form handleAddNewWord={handleAddNewWord} />

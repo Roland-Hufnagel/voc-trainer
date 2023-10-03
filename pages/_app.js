@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }) {
       { id: nanoid(), word, translation, hits: 0, views: 0 },
     ]);
   }
-  //------------------------
+  
   useEffect(() => {
     shuffleCards();
   }, []);
@@ -91,7 +91,6 @@ export default function App({ Component, pageProps }) {
   });
 
   const cardsToShow = limitCardsToShow(availableCards);
-  //-----------------
 
   return (
     <>

@@ -6,6 +6,9 @@ import { useState } from "react";
 import Button from "./Button";
 import Modal from "./Modal";
 import EditWordForm from "./EditWordForm";
+import EditIcon from "./icons/EditIcon";
+import DeleteIcon from "./icons/DeleteIcon";
+import CancelIcon from "./icons/CancelIcon";
 
 export default function WordsCard({
   card,
@@ -32,8 +35,16 @@ export default function WordsCard({
           </div>
         </Content>
         <Buttons>
-          <Button text="Edit" onClick={() => setEditMode(true)} />
-          <Button text="Delete" onClick={() => setDeleteMode(true)} />
+          <Button
+            text="Edit"
+            onClick={() => setEditMode(true)}
+            icon={EditIcon}
+          />
+          <Button
+            text="Delete"
+            onClick={() => setDeleteMode(true)}
+            icon={DeleteIcon}
+          />
         </Buttons>
       </WordCard>
       {editMode && (
@@ -48,9 +59,18 @@ export default function WordsCard({
       {deleteMode && (
         <Modal handleClose={() => setDeleteMode(false)}>
           <p>Are you sure to delete</p>
-          <p>&quot;{card.word}&quot;?</p><br/>
-          <Button text="Cancel" onClick={() => setDeleteMode(false)} />{" "}
-          <Button text="Delete" onClick={() => handleDeleteCard(card.id)} />
+          <p>&quot;{card.word}&quot;?</p>
+          <br />
+          <Button
+            text="Cancel"
+            onClick={() => setDeleteMode(false)}
+            icon={CancelIcon}
+          />{" "}
+          <Button
+            text="Delete"
+            onClick={() => handleDeleteCard(card.id)}
+            icon={DeleteIcon}
+          />
         </Modal>
       )}
     </>

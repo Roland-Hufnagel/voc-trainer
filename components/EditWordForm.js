@@ -4,6 +4,9 @@ import iconEye from "../public/assets/voc-trainer_icon_eye.png";
 import Image from "next/image";
 import Button from "./Button";
 import { useState } from "react";
+import ResetIcon from "./icons/ResetIcon";
+import CancelIcon from "./icons/CancelIcon";
+import SaveIcon from "./icons/SaveIcon";
 
 export default function EditWordForm({ card, handleChangeCard, handleClose }) {
   const [views, setViews] = useState(card.views);
@@ -36,13 +39,13 @@ export default function EditWordForm({ card, handleChangeCard, handleClose }) {
             setHits(0);
             setViews(0);
           }}
+          icon={ResetIcon}
         />
       </Container>
       <hr />
       <Container>
-        <Button text="Cancel" onClick={handleClose} />
-        {/* <Button text="Save" /> */}
-        <button type="submit">Save</button>
+        <Button text="Cancel" onClick={handleClose} icon={CancelIcon} />
+        <Button text="Save" type="submit" icon={SaveIcon} />
       </Container>
     </StyledForm>
   );

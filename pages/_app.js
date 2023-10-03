@@ -9,16 +9,15 @@ import { vocs, initialSettings } from "../lib/db";
 import Layout from "../components/Layout";
 
 export default function App({ Component, pageProps }) {
-  
   const [playedIds, setPlayedIds] = useState([]);
-  
+
   const [cards, setCards] = useLocalStorageState("cards-new", {
     defaultValue: vocs,
   });
   const [settings, setSettings] = useLocalStorageState("voc_settings", {
     defaultValue: initialSettings,
   });
-  
+
   const NUM_CARDS_TO_PICK = settings.find(
     (setting) => setting.name === "numCardsToPick"
   ).value;
@@ -39,7 +38,7 @@ export default function App({ Component, pageProps }) {
       { id: nanoid(), word, translation, hits: 0, views: 0 },
     ]);
   }
-  
+
   useEffect(() => {
     shuffleCards();
   }, []);
@@ -91,6 +90,14 @@ export default function App({ Component, pageProps }) {
   });
 
   const cardsToShow = limitCardsToShow(availableCards);
+  function handleChangeCard(updatedCard) {
+    setCards((prev) =>
+      prev.map((card) => (card.id === updatedCard.id ? updatedCard : card))
+    );
+  }
+  function handleDeleteCard(id) {
+    setCards((prev) => prev.filter((card) => card.id !== id));
+  }
 
   return (
     <>
@@ -103,7 +110,20 @@ export default function App({ Component, pageProps }) {
       <Layout>
         <Component
           {...pageProps}
-          {...{ cards, settings, handleChangeSettings, handleAddNewWord, cardsToShow, handleResult, handleView, playNewGame, playedIds }}
+          {...{
+            cards,
+            setCards,
+            settings,
+            handleChangeSettings,
+            handleChangeCard,
+            handleDeleteCard,
+            handleAddNewWord,
+            cardsToShow,
+            handleResult,
+            handleView,
+            playNewGame,
+            playedIds,
+          }}
         />
       </Layout>
     </>

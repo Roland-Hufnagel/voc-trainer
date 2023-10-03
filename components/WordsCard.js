@@ -46,7 +46,7 @@ export default function WordsCard({
         </Modal>
       )}
       {deleteMode && (
-        <Modal handleClose={() => setEditMode(false)}>
+        <Modal handleClose={() => setDeleteMode(false)}>
           <p>Are you sure to delete</p>
           <p>&quot;{card.word}&quot;?</p><br/>
           <Button text="Cancel" onClick={() => setDeleteMode(false)} />{" "}

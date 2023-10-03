@@ -20,6 +20,14 @@ export default function App({ Component, pageProps }) {
       );
     });
   }
+  function handleChangeCard(updatedCard) {
+    setCards((prev) =>
+      prev.map((card) => (card.id === updatedCard.id ? updatedCard : card))
+    );
+  }
+  function handleDeleteCard(id) {
+    setCards((prev) => prev.filter((card) => card.id !== id));
+  }
 
   return (
     <>
@@ -32,7 +40,14 @@ export default function App({ Component, pageProps }) {
       <Layout>
         <Component
           {...pageProps}
-          {...{ cards, setCards, settings, handleChangeSettings }}
+          {...{
+            cards,
+            setCards,
+            settings,
+            handleChangeSettings,
+            handleChangeCard,
+            handleDeleteCard
+          }}
         />
       </Layout>
     </>

@@ -7,7 +7,7 @@ export default function Button({ text, onClick, icon: Icon, large }) {
   const iconSize = large ? LARGE_ICON_SIZE : SMALL_ICON_SIZE;
 
   return (
-    <StyledButton onClick={onClick} large={large}>
+    <StyledButton onClick={onClick} large={large} type="button">
       {Icon && <Icon width={iconSize} />}
       <span>{text}</span>
     </StyledButton>
@@ -31,7 +31,7 @@ const largeButtonStyles = css`
 const StyledButton = styled.button`
   all: unset;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   border: solid var(--button);
   border-radius: 5px;

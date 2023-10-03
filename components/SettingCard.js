@@ -44,7 +44,7 @@ export default function SettingCard({ setting, handleChangeSettings }) {
               onClick={() => setShowModal(false)}
               icon={CancelIcon}
             />
-            <Button text="Save" icon={SaveIcon} />
+            <Button text="Save" type="submit" icon={SaveIcon} />
           </form>
         </Modal>
       )}

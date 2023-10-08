@@ -23,8 +23,11 @@ export const accentColors = [
 
 const GlobalStyles = createGlobalStyle`
   :root {
+    --primary: #a9ead8;
+    --primary-light: #cbf7eb;
     --white: #ffffff;
     --darktext: #27273a;
+    --graytext: #9a9aae;
     --background: #f5f7fd;
     --gray-light: #ebebf3;
     --gray-95: #ebebf2;

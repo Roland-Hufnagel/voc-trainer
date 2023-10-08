@@ -62,7 +62,7 @@ const StyledSettingCard = styled.li`
   background-color: var(--white);
   margin: 1rem auto;
   padding: 1.6rem 1.6rem 3rem 1.6rem;
-  width: 30rem;
+  max-width: 30rem;
   border-radius: 0.25rem;
   box-shadow: var(--boxshadow-secondary);
   display: grid;
@@ -115,11 +115,12 @@ const SettingDescription = styled.p`
 `;
 
 const SettingValue = styled.p`
-  background-color: var(--gray-98);
+  //background-color: var(--gray-98);
   font-size: 1.75rem;
   font-weight: 400;
   text-align: center;
-  padding: 1rem;
+  padding: 0.9rem;
+  border: 2px solid var(--primary);
   border-radius: var(--border-radius);
   width: 8rem;
   height: 4rem;

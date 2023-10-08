@@ -41,6 +41,7 @@ const GlobalStyles = createGlobalStyle`
 
     --fontfamily-regular: ${inter.style.fontFamily};
     --fontfamily-special: ${cutive.style.fontFamily};
+    --page-title: 1.25rem;
 
     --border-radius: 0.25rem;
     

@@ -4,7 +4,7 @@ import SettingCard from "../../components/SettingCard";
 export default function Dashboard({ settings, handleChangeSettings }) {
   return (
     <>
-      <h2>Settings</h2>
+      <PageTitle>Settings</PageTitle>
       <SettingsList>
         {settings.map((setting) => {
           return (
@@ -22,4 +22,11 @@ export default function Dashboard({ settings, handleChangeSettings }) {
 
 const SettingsList = styled.ul`
   all: unset;
+`;
+
+const PageTitle = styled.h2`
+  font-size: var(--page-title);
+  font-weight: 500;
+  text-align: center;
+  margin: 2rem 0;
 `;

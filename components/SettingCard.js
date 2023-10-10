@@ -34,7 +34,7 @@ export default function SettingCard({ setting, handleChangeSettings }) {
       {showModal && (
         <Modal handleClose={() => setShowModal(false)}>
           <StyledForm onSubmit={handleChange}>
-            <p>{setting.label}</p>
+            <SettingLabel>{setting.label}</SettingLabel>
             <StyledInput
               name="setting"
               type="number"
@@ -71,26 +71,30 @@ const StyledSettingCard = styled.li`
 `;
 
 const StyledForm = styled.form`
+  padding: 1.6rem 1.6rem 3rem 1.6rem;
   display: grid;
   align-content: center;
-  gap: 1rem;
+  justify-items: center;
 `;
 
 const StyledInput = styled.input`
-  line-height: 1.6rem;
-  width: 3rem;
-  border-radius: 5px;
-  margin: 0.2rem;
-  padding: 0.2rem 0.4rem;
-  font-size: 2rem;
+  font-size: 1.75rem;
+  font-weight: 400;
   text-align: center;
+  padding: 0 2rem;
+  border: 2px solid var(--darktext);
+  border-radius: var(--border-radius);
+  height: 4rem;
+  margin: 2rem auto;
+  min-width: 0;
 
-  /* Disable the increment and decrement buttons for number input */
-  &::-webkit-inner-spin-button
-   // &::-webkit-outer-spin-button
-  {
-    -webkit-appearance: none;
-    //margin: 0;
+  &:focus {
+    outline: none;
+    border: 2px solid var(--primary);
+  }
+
+  &::-webkit-inner-spin-button {
+    opacity: 1;
   }
 `;
 
@@ -115,15 +119,12 @@ const SettingDescription = styled.p`
 `;
 
 const SettingValue = styled.p`
-  //background-color: var(--gray-98);
+  background-color: var(--primary-light);
   font-size: 1.75rem;
   font-weight: 400;
   text-align: center;
-  padding: 0.9rem;
-  border: 2px solid var(--primary);
+  padding: 0.9rem 2rem;
   border-radius: var(--border-radius);
-  width: 8rem;
   height: 4rem;
   margin: 2rem auto;
 `;
-

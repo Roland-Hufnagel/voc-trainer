@@ -3,13 +3,7 @@ import styled, { css } from "styled-components";
 const SMALL_ICON_SIZE = "20";
 const LARGE_ICON_SIZE = "28";
 
-export default function Button({
-  text,
-  onClick,
-  icon: Icon,
-  large,
-  type = "button",
-}) {
+export default function Button({ text, onClick, icon: Icon, large, type = "button"}) {
   const iconSize = large ? LARGE_ICON_SIZE : SMALL_ICON_SIZE;
 
   return (
@@ -37,6 +31,7 @@ const largeButtonStyles = css`
 const StyledButton = styled.button`
   all: unset;
   cursor: pointer;
+  height: 1.35rem;
   display: inline-flex;
   align-items: center;
   border: solid var(--button);

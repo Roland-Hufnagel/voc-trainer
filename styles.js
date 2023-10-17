@@ -23,8 +23,11 @@ export const accentColors = [
 
 const GlobalStyles = createGlobalStyle`
   :root {
+    --primary: #a9ead8;
+    --primary-light: #e0fbf3;
     --white: #ffffff;
     --darktext: #27273a;
+    --graytext: #9a9aae;
     --background: #f5f7fd;
     --gray-light: #ebebf3;
     --gray-95: #ebebf2;
@@ -41,6 +44,7 @@ const GlobalStyles = createGlobalStyle`
 
     --fontfamily-regular: ${inter.style.fontFamily};
     --fontfamily-special: ${cutive.style.fontFamily};
+    --page-title: 1.25rem;
 
     --border-radius: 0.25rem;
     

@@ -25,7 +25,12 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
 
   return (
     <StyledCard isRated={isRated} isCorrect={isCorrect}>
-      <Word>{voc.word}</Word>
+      <Word>
+        {voc.word}
+        <audio controls>
+          <source src={voc.audio} type="audio/mpeg" />
+        </audio>
+      </Word>
       <ViewsCount aria-label="Number of views:">
         <ViewsIcon>
           <Image src={iconEye} alt="Eye icon" width="18" />
@@ -36,7 +41,7 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
         <HitsIcon>
           <Image src={iconCheckmark} alt="Checkmark icon" width="16" />
         </HitsIcon>
-        {isCorrect ? voc.hits + 1: voc.hits}
+        {isCorrect ? voc.hits + 1 : voc.hits}
       </HitsCount>
       <HorizontalLine />
       <Translation
@@ -79,11 +84,7 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
 
 const StyledCard = styled.li`
   background-color: ${({ isRated, isCorrect }) =>
-    isRated
-      ? isCorrect
-        ? "#A9EAD8"
-        : "#EAA9C4"
-      : "white"};
+    isRated ? (isCorrect ? "#A9EAD8" : "#EAA9C4") : "white"};
   color: var(--darktext);
   display: grid;
   grid-template-columns: 1fr 2rem 2rem;

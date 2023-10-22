@@ -4,13 +4,15 @@ export async function getPronunciationAudio(word) {
   const wordForPath = word.trim().toLowerCase();
   try {
     const response = await fetch(DICTIONARY_API_URL + wordForPath);
-    if (!response.ok) {
-      throw new Error("Fehler beim Abrufen der Daten");
+    if (response.ok) {
+      const data = await response.json();
+      const pronunciationAudio = data[0]["phonetics"][0]["audio"];
+      console.log("getPronunciationAudio: ", pronunciationAudio);
+      return pronunciationAudio;
+    } else {
+      console.log("Couldn't find word");
+      return;
     }
-    const data = await response.json();
-    const pronunciationAudio = "";
-    console.log(data);
-    return data;
   } catch (error) {
     throw new Error(error.message);
   }

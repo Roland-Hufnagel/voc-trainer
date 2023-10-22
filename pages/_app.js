@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 import useLocalStorageState from "use-local-storage-state";
 import { vocs, initialSettings } from "../lib/db";
+import { getPronunciationAudio } from "../services/fetchDictionaryData";
 
 import Layout from "../components/Layout";
 
@@ -32,11 +33,23 @@ export default function App({ Component, pageProps }) {
       );
     });
   }
-  function handleAddNewWord(word, translation) {
-    setCards((prev) => [
-      ...prev,
-      { id: nanoid(), word, translation, hits: 0, views: 0 },
-    ]);
+  async function handleAddNewWord(word, translation) {
+    try {
+      const audio = await getPronunciationAudio(word);
+      setCards((prev) => [
+        ...prev,
+        {
+          id: nanoid(),
+          word,
+          translation,
+          hits: 0,
+          views: 0,
+          audio,
+        },
+      ]);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   useEffect(() => {

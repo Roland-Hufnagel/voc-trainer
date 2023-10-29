@@ -109,10 +109,11 @@ const DropdownMenu = styled.ul`
   margin: 0;
   border-radius: var(--border-radius);
   background-color: white;
+  box-shadow: var(--boxshadow-primary);
 `;
 
 const DropdownItem = styled.li`
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   padding: 5px 10px;
   cursor: pointer;
   background-color: ${({ isSelected, selectedColor }) =>

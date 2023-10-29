@@ -6,14 +6,30 @@ export async function getPronunciationAudio(word) {
     const response = await fetch(DICTIONARY_API_URL + wordForPath);
     if (response.ok) {
       const data = await response.json();
-      const pronunciationAudio = data[0]["phonetics"][0]["audio"];
-      console.log("getPronunciationAudio: ", pronunciationAudio);
-      return pronunciationAudio;
-    } else {
-      console.log("Couldn't find word");
-      return;
+      const urls = extractAudioLinks(data);
+      return addCountryCodesToLinks(urls);
     }
   } catch (error) {
-    throw new Error(error.message);
+    console.error(error.message);
+    return [];
   }
+}
+
+function extractAudioLinks(data) {
+  const phonetics = data.flatMap((item) => item.phonetics);
+  const audioLinks = phonetics
+    .map((phonetic) => phonetic.audio)
+    .filter((audio) => audio);
+  return audioLinks;
+}
+
+function addCountryCodesToLinks(urls) {
+  const linksWithCountryCodes = urls.map((url) => {
+    const country = url.slice(-6, -4).toUpperCase();
+    return {
+      countryCode: country,
+      url: url,
+    };
+  });
+  return linksWithCountryCodes;
 }

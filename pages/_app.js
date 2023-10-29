@@ -33,9 +33,10 @@ export default function App({ Component, pageProps }) {
       );
     });
   }
+
   async function handleAddNewWord(word, translation) {
     try {
-      const audio = await getPronunciationAudio(word);
+      const audios = await getPronunciationAudio(word);
       setCards((prev) => [
         ...prev,
         {
@@ -44,7 +45,7 @@ export default function App({ Component, pageProps }) {
           translation,
           hits: 0,
           views: 0,
-          audio,
+          audios,
         },
       ]);
     } catch (error) {

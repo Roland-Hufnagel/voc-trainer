@@ -38,6 +38,15 @@ export default function Dashboard({
   function validateFileFormat(fileName) {
     if (!fileName.endsWith(".csv")) {
       alert(`${fileName} \n Format not supported! Please choose another file.`);
+      return false;
+    } else {
+      return true;
+    }
+  }
+  function onChangeHandler(event) {
+    const isValid = validateFileFormat(event.target.value);
+    if (!isValid) {
+      event.target.value = "";
     }
   }
 
@@ -58,17 +67,16 @@ export default function Dashboard({
       <UploadCSV>
         <CSVLabel>Dateiupload</CSVLabel>
         <CSVDescription>
-          You can upload your own dictionary. Only CSV-files are supported.{" "}
-        </CSVDescription>{" "}
+          You can upload your own dictionary. Only CSV-files are supported.
+        </CSVDescription>
         <Button
           onClick={() => setShowUploadModal(true)}
           text="Upload"
           icon={EditIcon}
         />
-      </UploadCSV>{" "}
+      </UploadCSV>
       {showUploadModal && (
         <Modal handleClose={() => setShowUploadModal(false)}>
-          {" "}
           <form onSubmit={handleFileUpload}>
             <StyledInput
               id="file-upload"
@@ -76,7 +84,7 @@ export default function Dashboard({
               name="data"
               required
               onChange={(event) => {
-                validateFileFormat(event.target.value);
+                onChangeHandler(event);
               }}
             />
             <Button type="submit" text="Upload" icon={EditIcon} />
@@ -89,7 +97,6 @@ export default function Dashboard({
 
 const StyledInput = styled.input`
   &::file-selector-button {
-    padding: 0.5em;
     border-radius: 5px;
     background-color: var(--white);
     padding: 0.35rem 0.75rem;

@@ -8,6 +8,8 @@ export async function getPronunciationAudio(word) {
       const data = await response.json();
       const urls = extractAudioLinks(data);
       return addCountryCodesToLinks(urls);
+    } else {
+      return [];
     }
   } catch (error) {
     console.error(error.message);
@@ -33,3 +35,4 @@ function addCountryCodesToLinks(urls) {
   });
   return linksWithCountryCodes;
 }
+

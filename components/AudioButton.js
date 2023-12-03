@@ -1,22 +1,20 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import PlaySoundIcon from "./icons/PlaySoundIcon";
-import DropDownArrow from "./icons/DropDownArrow";
 
-export default function AudioButton({ audioLinks, dropdownColor }) {
-  const [selectedAudio, setSelectedAudio] = useState(
-    audioLinks ? audioLinks[0] : ""
-  );
-  const [showDropdown, setShowDropdown] = useState(false);
+export default function AudioButton({ audioLinks }) {
+  const selectedAudio = getPreferredPronunciation(audioLinks);
+
+  function getPreferredPronunciation(links) {
+    const ukPronunciation = links.find((link) => link.countryCode === "UK");
+
+    return ukPronunciation
+      ? ukPronunciation
+      : links[Math.floor(Math.random() * links.length)];
+  }
 
   function playAudio() {
     const audio = new Audio(selectedAudio.url);
     audio.play();
-  }
-
-  function dropDownHandler(audioLink) {
-    setSelectedAudio(audioLink);
-    setShowDropdown(false);
   }
 
   return (
@@ -24,30 +22,6 @@ export default function AudioButton({ audioLinks, dropdownColor }) {
       <PlayButton onClick={playAudio}>
         <PlaySoundIcon width={22} />
       </PlayButton>
-      {audioLinks.length > 0 && (
-        <>
-          <DropdownButton
-            dropdownColor={dropdownColor}
-            onClick={() => setShowDropdown(!showDropdown)}
-          >
-            <DropDownArrow width={6} />
-          </DropdownButton>
-          {showDropdown && (
-            <DropdownMenu>
-              {audioLinks.map((audioLink, index) => (
-                <DropdownItem
-                  key={index}
-                  onClick={() => dropDownHandler(audioLink)}
-                  isSelected={audioLink.url === selectedAudio.url}
-                  selectedColor={dropdownColor}
-                >
-                  {audioLink.countryCode}
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
-          )}
-        </>
-      )}
     </ButtonWrapper>
   );
 }

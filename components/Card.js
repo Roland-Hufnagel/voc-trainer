@@ -30,7 +30,7 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
       <Word>{voc.word}</Word>
       <Audio>
         {voc.audios && voc.audios.length > 0 ? (
-          <AudioButton audioLinks={voc.audios} dropdownColor={cardColor} />
+          <AudioButton audioLinks={voc.audios} />
         ) : (
           <NoSoundIcon width={22} />
         )}

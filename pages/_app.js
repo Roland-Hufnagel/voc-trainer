@@ -35,8 +35,13 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleAddNewWord(word, translation) {
+    let audios = [];
     try {
-      const audios = await getPronunciationAudio(word);
+        audios = await getPronunciationAudio(word)
+        
+    } catch (error) {
+      console.error(error.message);
+    } finally {
       setCards((prev) => [
         ...prev,
         {
@@ -48,8 +53,6 @@ export default function App({ Component, pageProps }) {
           audios,
         },
       ]);
-    } catch (error) {
-      throw new Error(error.message);
     }
   }
 

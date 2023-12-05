@@ -17,7 +17,7 @@ export default function AudioButton({ audioLinks }) {
 
   return (
     <ButtonWrapper>
-      <PlayButton onClick={()=>playAudio(selectedAudio.URL}>
+      <PlayButton onClick={()=>playAudio(selectedAudio.url)}>
         <PlaySoundIcon width={22} />
       </PlayButton>
     </ButtonWrapper>

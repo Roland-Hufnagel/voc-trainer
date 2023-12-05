@@ -29,7 +29,7 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
     <StyledCard isRated={isRated} isCorrect={isCorrect}>
       <Word>{voc.word}</Word>
       <Audio>
-        {voc.audios && voc.audios.length > 0 ? (
+        {voc.audios?.length ? (
           <AudioButton audioLinks={voc.audios} />
         ) : (
           <NoSoundIcon width={22} />

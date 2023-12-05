@@ -35,25 +35,18 @@ export default function App({ Component, pageProps }) {
   }
 
   async function handleAddNewWord(word, translation) {
-    let audios = [];
-    try {
-        audios = await getPronunciationAudio(word)
-        
-    } catch (error) {
-      console.error(error.message);
-    } finally {
-      setCards((prev) => [
-        ...prev,
-        {
-          id: nanoid(),
-          word,
-          translation,
-          hits: 0,
-          views: 0,
-          audios,
-        },
-      ]);
-    }
+    const audios = await getPronunciationAudio(word);
+    setCards((prev) => [
+      ...prev,
+      {
+        id: nanoid(),
+        word,
+        translation,
+        hits: 0,
+        views: 0,
+        audios,
+      },
+    ]);
   }
 
   useEffect(() => {
@@ -107,11 +100,16 @@ export default function App({ Component, pageProps }) {
   });
 
   const cardsToShow = limitCardsToShow(availableCards);
-  function handleChangeCard(updatedCard) {
+
+  async function handleChangeCard(updatedCard) {
+    const audios = await getPronunciationAudio(updatedCard.word);
     setCards((prev) =>
-      prev.map((card) => (card.id === updatedCard.id ? updatedCard : card))
+      prev.map((card) =>
+        card.id === updatedCard.id ? { ...updatedCard, audios } : card
+      )
     );
   }
+
   function handleDeleteCard(id) {
     setCards((prev) => prev.filter((card) => card.id !== id));
   }

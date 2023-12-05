@@ -10,8 +10,8 @@ export default function AudioButton({ audioLinks }) {
     return ukPronunciation || links[Math.floor(Math.random() * links.length)];
   }
 
-  function playAudio() {
-    const audio = new Audio(selectedAudio.url);
+  function playAudio(audioURL) {
+    const audio = new Audio(audioURL);
     audio.play();
   }
 

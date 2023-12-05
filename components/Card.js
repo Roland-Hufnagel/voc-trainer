@@ -4,8 +4,10 @@ import iconArrowRight from "../public/assets/voc-trainer_icon_arrow-right.svg";
 import iconEye from "../public/assets/voc-trainer_icon_eye.png";
 import iconCheckmark from "../public/assets/voc-trainer_icon_checkmark.png";
 import iconCross from "../public/assets/voc-trainer_icon_cross.png";
+import NoSoundIcon from "./icons/NoSoundIcon";
 
 import Image from "next/image";
+import AudioButton from "./AudioButton";
 
 export default function Card({ voc, handleResult, handleView, cardColor }) {
   const [showTranslation, setShowTranslation] = useState(false);
@@ -26,6 +28,13 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
   return (
     <StyledCard isRated={isRated} isCorrect={isCorrect}>
       <Word>{voc.word}</Word>
+      <Audio>
+        {voc.audios?.length ? (
+          <AudioButton audioLinks={voc.audios} />
+        ) : (
+          <NoSoundIcon width={22} />
+        )}
+      </Audio>
       <ViewsCount aria-label="Number of views:">
         <ViewsIcon>
           <Image src={iconEye} alt="Eye icon" width="18" />
@@ -36,7 +45,7 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
         <HitsIcon>
           <Image src={iconCheckmark} alt="Checkmark icon" width="16" />
         </HitsIcon>
-        {isCorrect ? voc.hits + 1: voc.hits}
+        {isCorrect ? voc.hits + 1 : voc.hits}
       </HitsCount>
       <HorizontalLine />
       <Translation
@@ -79,20 +88,16 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
 
 const StyledCard = styled.li`
   background-color: ${({ isRated, isCorrect }) =>
-    isRated
-      ? isCorrect
-        ? "#A9EAD8"
-        : "#EAA9C4"
-      : "white"};
+    isRated ? (isCorrect ? "#A9EAD8" : "#EAA9C4") : "white"};
   color: var(--darktext);
   display: grid;
-  grid-template-columns: 1fr 2rem 2rem;
+  grid-template-columns: 1fr 1rem 2rem 2rem;
   grid-template-rows: 1fr 1fr 1px 2fr;
   grid-template-areas:
-    "word views views"
-    "word hits hits"
-    "hr hr hr"
-    "translation wrong-button correct-button";
+    "word audio views views"
+    "word audio hits hits"
+    "hr hr hr hr"
+    "translation translation wrong-button correct-button";
   border-radius: 0.25rem;
   margin: 1rem auto;
   padding: 0 0.8rem;
@@ -108,13 +113,18 @@ const StyledCard = styled.li`
     isRated ? (isCorrect ? "scale(1.2)" : "scale(0.8)") : "none"};
 `;
 
-const Word = styled.p`
+const Word = styled.div`
   grid-area: word;
   align-self: center;
   font-family: var(--fontfamily-special);
   font-size: 0.85rem;
   line-height: 1.4;
   margin-right: 0.5rem;
+`;
+
+const Audio = styled.div`
+grid-area: audio;
+align-self: center;
 `;
 
 const ViewsIcon = styled.span`
@@ -174,7 +184,7 @@ const HorizontalLine = styled.hr`
 
 const Slider = styled.button`
   all: unset;
-  grid-area: 5 / 4 / 3 / 1;
+  grid-area: 4 / 1 / 5 / 5;
   background-color: ${({ cardColor }) => cardColor};
   color: var(--white);
   display: flex;

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 import useLocalStorageState from "use-local-storage-state";
 import { vocs, initialSettings } from "../lib/db";
+import { getPronunciationAudio } from "../services/fetchDictionaryData";
 
 import Layout from "../components/Layout";
 
@@ -32,10 +33,19 @@ export default function App({ Component, pageProps }) {
       );
     });
   }
-  function handleAddNewWord(word, translation) {
+
+  async function handleAddNewWord(word, translation) {
+    const audios = await getPronunciationAudio(word);
     setCards((prev) => [
       ...prev,
-      { id: nanoid(), word, translation, hits: 0, views: 0 },
+      {
+        id: nanoid(),
+        word,
+        translation,
+        hits: 0,
+        views: 0,
+        audios,
+      },
     ]);
   }
 
@@ -90,11 +100,16 @@ export default function App({ Component, pageProps }) {
   });
 
   const cardsToShow = limitCardsToShow(availableCards);
-  function handleChangeCard(updatedCard) {
+
+  async function handleChangeCard(updatedCard) {
+    const audios = await getPronunciationAudio(updatedCard.word);
     setCards((prev) =>
-      prev.map((card) => (card.id === updatedCard.id ? updatedCard : card))
+      prev.map((card) =>
+        card.id === updatedCard.id ? { ...updatedCard, audios } : card
+      )
     );
   }
+
   function handleDeleteCard(id) {
     setCards((prev) => prev.filter((card) => card.id !== id));
   }

@@ -7,9 +7,7 @@ export default function AudioButton({ audioLinks }) {
   function getPreferredPronunciation(links) {
     const ukPronunciation = links.find((link) => link.countryCode === "UK");
 
-    return ukPronunciation
-      ? ukPronunciation
-      : links[Math.floor(Math.random() * links.length)];
+    return ukPronunciation || links[Math.floor(Math.random() * links.length)];
   }
 
   function playAudio() {

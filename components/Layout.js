@@ -2,10 +2,10 @@ import styled from "styled-components";
 import Header from "./Header";
 import NavigationBar from "./Navigation/NavigationBar";
 
-function Layout({ children }) {
+function Layout({ success, children }) {
   return (
     <AppContainer>
-      <Header />
+      <Header success={success} />
       <StyledMain>{children}</StyledMain>
       <NavigationBar />
     </AppContainer>
@@ -13,6 +13,7 @@ function Layout({ children }) {
 }
 
 export default Layout;
+
 const AppContainer = styled.div`
   height: 100vh;
   display: grid;

@@ -1,11 +1,6 @@
 import styled from "styled-components";
-
 import NavigationItem from "./NavigationItem";
-import HomeIcon from "../icons/HomeIcon";
-import WordsIcon from "../icons/WordsIcon";
-import DashboardIcon from "../icons/DashboardIcon";
 
-const ICON_WIDTH = "1.5rem";
 
 export default function NavigationBar() {
   return (
@@ -14,17 +9,17 @@ export default function NavigationBar() {
         <NavigationItem
           path="/"
           pageName="Home"
-          icon={<HomeIcon width={ICON_WIDTH} />}
+          iconVariant="home"
         />
         <NavigationItem
           path="/words"
           pageName="Words"
-          icon={<WordsIcon width={ICON_WIDTH} />}
+          iconVariant="words"
         />
         <NavigationItem
           path="/dashboard"
           pageName="Dashboard"
-          icon={<DashboardIcon width={ICON_WIDTH} />}
+          iconVariant="dashboard"
         />
       </NavigationItems>
     </nav>

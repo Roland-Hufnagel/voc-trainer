@@ -1,14 +1,21 @@
 import styled, { css } from "styled-components";
+import Icon from "./Icon";
 
 const SMALL_ICON_SIZE = "20";
 const LARGE_ICON_SIZE = "28";
 
-export default function Button({ text, onClick, icon: Icon, large, type = "button"}) {
+export default function Button({
+  text,
+  onClick,
+  iconVariant,
+  large,
+  type = "button",
+}) {
   const iconSize = large ? LARGE_ICON_SIZE : SMALL_ICON_SIZE;
 
   return (
     <StyledButton onClick={onClick} large={large} type={type}>
-      {Icon && <Icon width={iconSize} />}
+      {iconVariant && <Icon variant={iconVariant} size={iconSize} />}
       <span>{text}</span>
     </StyledButton>
   );

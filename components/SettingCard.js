@@ -5,6 +5,7 @@ import CancelIcon from "./icons/CancelIcon";
 import SaveIcon from "./icons/SaveIcon";
 import Modal from "./Modal";
 import { useState } from "react";
+import Icon from "./Icon";
 
 export default function SettingCard({ setting, handleChangeSettings }) {
   const [showModal, setShowModal] = useState(false);
@@ -27,7 +28,7 @@ export default function SettingCard({ setting, handleChangeSettings }) {
         <Button
           onClick={() => setShowModal(true)}
           text="Edit"
-          icon={EditIcon}
+          iconVariant="edit"
         />
       </StyledSettingCard>
 

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import SettingCard from "../../components/SettingCard";
 import { useState } from "react";
 import Button from "../../components/Button";
-import EditIcon from "../../components/icons/EditIcon";
 import Modal from "../../components/Modal";
 
 export default function Dashboard({
@@ -72,7 +71,7 @@ export default function Dashboard({
         <Button
           onClick={() => setShowUploadModal(true)}
           text="Upload"
-          icon={EditIcon}
+          iconVariant="upload"
         />
       </UploadCSV>
       {showUploadModal && (
@@ -87,7 +86,7 @@ export default function Dashboard({
                 onChangeHandler(event);
               }}
             />
-            <Button type="submit" text="Upload" icon={EditIcon} />
+            <Button type="submit" text="Upload" iconVariant="upload" />
           </form>
         </Modal>
       )}

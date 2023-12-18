@@ -2,10 +2,14 @@ import styled from "styled-components";
 import Header from "./Header";
 import NavigationBar from "./Navigation/NavigationBar";
 
-function Layout({ success, children }) {
+function Layout({ countFinished, countInProgress, countTotal, children }) {
   return (
     <AppContainer>
-      <Header success={success} />
+      <Header
+        countFinished={countFinished}
+        countInProgress={countInProgress}
+        countTotal={countTotal}
+      />
       <StyledMain>{children}</StyledMain>
       <NavigationBar />
     </AppContainer>

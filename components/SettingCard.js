@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import Button from "./Button";
-import CancelIcon from "./icons/CancelIcon";
-import SaveIcon from "./icons/SaveIcon";
 import Modal from "./Modal";
 import { useState } from "react";
 

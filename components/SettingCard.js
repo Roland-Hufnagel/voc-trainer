@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import Button from "./Button";
-import EditIcon from "../components/icons/EditIcon";
 import CancelIcon from "./icons/CancelIcon";
 import SaveIcon from "./icons/SaveIcon";
 import Modal from "./Modal";
 import { useState } from "react";
-import Icon from "./Icon";
 
 export default function SettingCard({ setting, handleChangeSettings }) {
   const [showModal, setShowModal] = useState(false);
@@ -48,9 +46,9 @@ export default function SettingCard({ setting, handleChangeSettings }) {
               <Button
                 text="Cancel"
                 onClick={() => setShowModal(false)}
-                icon={CancelIcon}
+                iconVariant="cancel"
               />
-              <Button text="Save" icon={SaveIcon} type="submit" />
+              <Button text="Confirm" iconVariant="confirm" type="submit" />
             </StyledButtonContainer>
           </StyledForm>
         </Modal>

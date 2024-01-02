@@ -24,7 +24,7 @@ export default function SettingCard({ setting, handleChangeSettings }) {
         <Button
           onClick={() => setShowModal(true)}
           text="Edit"
-          iconVariant="words"
+          iconVariant="edit"
         />
       </StyledSettingCard>
 

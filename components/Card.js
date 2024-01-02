@@ -30,16 +30,14 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
           <Icon variant="noSound" size={22} />
         )}
       </Audio>
-      <ViewsCount aria-label="Number of views:">
-        <ViewsIcon>
-          <Icon variant="views" size={20} />
-        </ViewsIcon>
-        {voc.views}
-      </ViewsCount>
+      <ViewsIcon>
+        <Icon variant="views" size={20} />
+      </ViewsIcon>
+      <ViewsCount aria-label="Number of views:">{voc.views}</ViewsCount>
+      <HitsIcon>
+        <Icon variant="checkmarkSmall" size={16} />
+      </HitsIcon>
       <HitsCount aria-label="Number of hits:">
-        <HitsIcon>
-          <Icon variant="checkmarkSmall" size={16} />
-        </HitsIcon>
         {isCorrect ? voc.hits + 1 : voc.hits}
       </HitsCount>
       <HorizontalLine />
@@ -86,11 +84,11 @@ const StyledCard = styled.li`
     isRated ? (isCorrect ? "#A9EAD8" : "#EAA9C4") : "white"};
   color: var(--darktext);
   display: grid;
-  grid-template-columns: 1fr 1rem 2rem 2rem;
+  grid-template-columns: 1fr 1.75rem 2rem 1.6rem;
   grid-template-rows: 1fr 1fr 1px 2fr;
   grid-template-areas:
-    "word audio views views"
-    "word audio hits hits"
+    "word audio viewsIcon viewsCount"
+    "word audio hitsIcon hitsCount"
     "hr hr hr hr"
     "translation translation wrong-button correct-button";
   border-radius: 0.25rem;
@@ -122,24 +120,28 @@ const Audio = styled.div`
   align-self: center;
 `;
 
-const ViewsIcon = styled.span`
-  margin-right: 0.4rem;
+const ViewsIcon = styled.div`
+  grid-area: viewsIcon;
+  align-self: end;
+  justify-self: end;
+  display: grid;
 `;
 
-const ViewsCount = styled.p`
-  grid-area: views;
+const ViewsCount = styled.div`
+  grid-area: viewsCount;
   align-self: end;
   justify-self: end;
   padding-left: 0.5rem;
 `;
 
-const HitsIcon = styled.span`
-  margin-right: 0.5rem;
+const HitsIcon = styled.div`
+  grid-area: hitsIcon;
+  justify-self: end;
+  display: grid;
 `;
 
-const HitsCount = styled.p`
-  grid-area: hits;
-  align-self: start;
+const HitsCount = styled.div`
+  grid-area: hitsCount;
   justify-self: end;
   padding-left: 0.5rem;
 `;

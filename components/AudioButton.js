@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PlaySoundIcon from "./icons/PlaySoundIcon";
 import Icon from "./Icon";
 
 export default function AudioButton({ audioLinks }) {

@@ -90,7 +90,7 @@ const StyledCard = styled.li`
     "word audio viewsIcon viewsCount"
     "word audio hitsIcon hitsCount"
     "hr hr hr hr"
-    "translation translation wrong-button correct-button";
+    "translation . wrong-button correct-button";
   border-radius: 0.25rem;
   margin: 1rem auto;
   padding: 0 0.8rem;

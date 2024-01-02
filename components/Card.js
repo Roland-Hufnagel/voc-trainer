@@ -1,13 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
-import iconArrowRight from "../public/assets/voc-trainer_icon_arrow-right.svg";
-import iconEye from "../public/assets/voc-trainer_icon_eye.png";
-import iconCheckmark from "../public/assets/voc-trainer_icon_checkmark.png";
-import iconCross from "../public/assets/voc-trainer_icon_cross.png";
-import NoSoundIcon from "./icons/NoSoundIcon";
 
-import Image from "next/image";
 import AudioButton from "./AudioButton";
+import Icon from "./Icon";
 
 export default function Card({ voc, handleResult, handleView, cardColor }) {
   const [showTranslation, setShowTranslation] = useState(false);
@@ -32,18 +27,18 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
         {voc.audios?.length ? (
           <AudioButton audioLinks={voc.audios} />
         ) : (
-          <NoSoundIcon width={22} />
+          <Icon variant="noSound" size={22} />
         )}
       </Audio>
       <ViewsCount aria-label="Number of views:">
         <ViewsIcon>
-          <Image src={iconEye} alt="Eye icon" width="18" />
+          <Icon variant="views" size={20} />
         </ViewsIcon>
         {voc.views}
       </ViewsCount>
       <HitsCount aria-label="Number of hits:">
         <HitsIcon>
-          <Image src={iconCheckmark} alt="Checkmark icon" width="16" />
+          <Icon variant="checkmarkSmall" size={16} />
         </HitsIcon>
         {isCorrect ? voc.hits + 1 : voc.hits}
       </HitsCount>
@@ -61,14 +56,14 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
             aria-label="Mark as wrong"
             type="button"
           >
-            <Image src={iconCross} alt="Cross icon" width="18" />
+            <Icon variant="crossBig" size={20} color="var(--graytext)" />
           </WrongButton>
           <CorrectButton
             onClick={() => handleRateClick(true)}
             aria-label="Mark as correct"
             type="button"
           >
-            <Image src={iconCheckmark} alt="Checkmark icon" width="25" />
+            <Icon variant="checkmarkBig" size={26} color={cardColor} />
           </CorrectButton>
         </>
       )}
@@ -80,7 +75,7 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
         showTranslation={showTranslation}
         type="button"
       >
-        <Image src={iconArrowRight} alt="Right arrow" />
+        <Icon variant="arrowRight" size={28} color="var(--white)" />
       </Slider>
     </StyledCard>
   );
@@ -123,8 +118,8 @@ const Word = styled.div`
 `;
 
 const Audio = styled.div`
-grid-area: audio;
-align-self: center;
+  grid-area: audio;
+  align-self: center;
 `;
 
 const ViewsIcon = styled.span`

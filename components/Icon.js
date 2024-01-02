@@ -94,7 +94,7 @@ const icons = {
 export default function Icon({
   variant,
   color = "var(--darktext)",
-  size = 50,
+  size = 20,
 }) {
   return (
     <svg

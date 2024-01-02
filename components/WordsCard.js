@@ -71,14 +71,16 @@ export default function WordsCard({
     </>
   );
 }
-const Views = styled.span`
-  margin-right: 1rem;
+const Views = styled.div`
+  gap: 0.35rem;
+  margin-right: 0.75rem;
 `;
-const Hits = styled.span`
+const Hits = styled.div`
+  gap: 0.35rem;
   margin: 0 1rem;
 `;
 const WordCard = styled.li`
-  background-color: white;
+  background-color: var(--white);
   color: var(--darktext);
   box-shadow: var(--boxshadow-secondary);
   display: flex;
@@ -86,15 +88,18 @@ const WordCard = styled.li`
   margin: 1rem auto;
   padding: 0.5rem;
   width: 300px;
-  & img {
-    margin-right: 1rem;
-  }
 `;
 const Content = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 0.3rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    align-content: center;
+  }
 `;
 const Buttons = styled.section`
   display: flex;

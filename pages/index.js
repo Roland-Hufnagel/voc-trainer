@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import Cardlist from "../components/Cardlist";
 import Button from "../components/Button";
-import ResetIcon from "../components/icons/ResetIcon";
 import Form from "../components/Form";
 
-
-export default function Home({ cardsToShow, handleResult, handleView, handleAddNewWord, playNewGame, playedIds }) {
- 
+export default function Home({
+  cardsToShow,
+  handleResult,
+  handleView,
+  handleAddNewWord,
+  playNewGame,
+  playedIds,
+}) {
   return (
     <>
       <Form handleAddNewWord={handleAddNewWord} />
@@ -21,7 +25,7 @@ export default function Home({ cardsToShow, handleResult, handleView, handleAddN
           <Button
             text="Play again"
             onClick={playNewGame}
-            icon={ResetIcon}
+            iconVariant="reset"
             large
           />
         </Container>

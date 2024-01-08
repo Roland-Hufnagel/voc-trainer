@@ -1,13 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
-import iconArrowRight from "../public/assets/voc-trainer_icon_arrow-right.svg";
-import iconEye from "../public/assets/voc-trainer_icon_eye.png";
-import iconCheckmark from "../public/assets/voc-trainer_icon_checkmark.png";
-import iconCross from "../public/assets/voc-trainer_icon_cross.png";
-import NoSoundIcon from "./icons/NoSoundIcon";
 
-import Image from "next/image";
 import AudioButton from "./AudioButton";
+import Icon from "./Icon";
 
 export default function Card({ voc, handleResult, handleView, cardColor }) {
   const [showTranslation, setShowTranslation] = useState(false);
@@ -32,19 +27,17 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
         {voc.audios?.length ? (
           <AudioButton audioLinks={voc.audios} />
         ) : (
-          <NoSoundIcon width={22} />
+          <Icon variant="noSound" size={22} />
         )}
       </Audio>
-      <ViewsCount aria-label="Number of views:">
-        <ViewsIcon>
-          <Image src={iconEye} alt="Eye icon" width="18" />
-        </ViewsIcon>
-        {voc.views}
-      </ViewsCount>
+      <ViewsIcon>
+        <Icon variant="views" size={20} />
+      </ViewsIcon>
+      <ViewsCount aria-label="Number of views:">{voc.views}</ViewsCount>
+      <HitsIcon>
+        <Icon variant="checkmarkSmall" size={16} />
+      </HitsIcon>
       <HitsCount aria-label="Number of hits:">
-        <HitsIcon>
-          <Image src={iconCheckmark} alt="Checkmark icon" width="16" />
-        </HitsIcon>
         {isCorrect ? voc.hits + 1 : voc.hits}
       </HitsCount>
       <HorizontalLine />
@@ -61,14 +54,14 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
             aria-label="Mark as wrong"
             type="button"
           >
-            <Image src={iconCross} alt="Cross icon" width="18" />
+            <Icon variant="crossBig" size={20} color="var(--graytext)" />
           </WrongButton>
           <CorrectButton
             onClick={() => handleRateClick(true)}
             aria-label="Mark as correct"
             type="button"
           >
-            <Image src={iconCheckmark} alt="Checkmark icon" width="25" />
+            <Icon variant="checkmarkBig" size={26} color={cardColor} />
           </CorrectButton>
         </>
       )}
@@ -80,7 +73,7 @@ export default function Card({ voc, handleResult, handleView, cardColor }) {
         showTranslation={showTranslation}
         type="button"
       >
-        <Image src={iconArrowRight} alt="Right arrow" />
+        <Icon variant="arrowRight" size={28} color="var(--white)" />
       </Slider>
     </StyledCard>
   );
@@ -91,13 +84,13 @@ const StyledCard = styled.li`
     isRated ? (isCorrect ? "#A9EAD8" : "#EAA9C4") : "white"};
   color: var(--darktext);
   display: grid;
-  grid-template-columns: 1fr 1rem 2rem 2rem;
+  grid-template-columns: 1fr 1.75rem 2rem 1.6rem;
   grid-template-rows: 1fr 1fr 1px 2fr;
   grid-template-areas:
-    "word audio views views"
-    "word audio hits hits"
+    "word audio viewsIcon viewsCount"
+    "word audio hitsIcon hitsCount"
     "hr hr hr hr"
-    "translation translation wrong-button correct-button";
+    "translation . wrong-button correct-button";
   border-radius: 0.25rem;
   margin: 1rem auto;
   padding: 0 0.8rem;
@@ -123,28 +116,32 @@ const Word = styled.div`
 `;
 
 const Audio = styled.div`
-grid-area: audio;
-align-self: center;
+  grid-area: audio;
+  align-self: center;
 `;
 
-const ViewsIcon = styled.span`
-  margin-right: 0.4rem;
+const ViewsIcon = styled.div`
+  grid-area: viewsIcon;
+  align-self: end;
+  justify-self: end;
+  display: grid;
 `;
 
-const ViewsCount = styled.p`
-  grid-area: views;
+const ViewsCount = styled.div`
+  grid-area: viewsCount;
   align-self: end;
   justify-self: end;
   padding-left: 0.5rem;
 `;
 
-const HitsIcon = styled.span`
-  margin-right: 0.5rem;
+const HitsIcon = styled.div`
+  grid-area: hitsIcon;
+  justify-self: end;
+  display: grid;
 `;
 
-const HitsCount = styled.p`
-  grid-area: hits;
-  align-self: start;
+const HitsCount = styled.div`
+  grid-area: hitsCount;
   justify-self: end;
   padding-left: 0.5rem;
 `;

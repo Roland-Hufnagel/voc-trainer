@@ -1,8 +1,5 @@
 import styled from "styled-components";
 import Button from "./Button";
-import EditIcon from "../components/icons/EditIcon";
-import CancelIcon from "./icons/CancelIcon";
-import SaveIcon from "./icons/SaveIcon";
 import Modal from "./Modal";
 import { useState } from "react";
 
@@ -27,7 +24,7 @@ export default function SettingCard({ setting, handleChangeSettings }) {
         <Button
           onClick={() => setShowModal(true)}
           text="Edit"
-          icon={EditIcon}
+          iconVariant="edit"
         />
       </StyledSettingCard>
 
@@ -47,9 +44,9 @@ export default function SettingCard({ setting, handleChangeSettings }) {
               <Button
                 text="Cancel"
                 onClick={() => setShowModal(false)}
-                icon={CancelIcon}
+                iconVariant="cancel"
               />
-              <Button text="Save" icon={SaveIcon} type="submit" />
+              <Button text="Confirm" iconVariant="confirm" type="submit" />
             </StyledButtonContainer>
           </StyledForm>
         </Modal>

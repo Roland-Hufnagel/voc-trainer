@@ -1,14 +1,9 @@
 import styled from "styled-components";
-import Image from "next/image";
-import iconCheckmark from "../public/assets/voc-trainer_icon_checkmark.png";
-import iconEye from "../public/assets/voc-trainer_icon_eye.png";
 import { useState } from "react";
 import Button from "./Button";
 import Modal from "./Modal";
 import EditWordForm from "./EditWordForm";
-import EditIcon from "./icons/EditIcon";
-import DeleteIcon from "./icons/DeleteIcon";
-import CancelIcon from "./icons/CancelIcon";
+import Icon from "./Icon";
 
 export default function WordsCard({
   card,
@@ -25,11 +20,11 @@ export default function WordsCard({
           <p>{card.translation}</p>
           <div>
             <Views aria-label="Number of views">
-              <Image src={iconEye} alt="Eye icon" width="18" />
+              <Icon variant="views" size={20} />
               {card.views}
             </Views>
             <Hits aria-label="Number of hits">
-              <Image src={iconCheckmark} alt="Checkmark icon" width="18" />
+              <Icon variant="checkmarkSmall" size={16} />
               {card.hits}
             </Hits>
           </div>
@@ -38,12 +33,12 @@ export default function WordsCard({
           <Button
             text="Edit"
             onClick={() => setEditMode(true)}
-            icon={EditIcon}
+            iconVariant="edit"
           />
           <Button
             text="Delete"
             onClick={() => setDeleteMode(true)}
-            icon={DeleteIcon}
+            iconVariant="delete"
           />
         </Buttons>
       </WordCard>
@@ -64,26 +59,28 @@ export default function WordsCard({
           <Button
             text="Cancel"
             onClick={() => setDeleteMode(false)}
-            icon={CancelIcon}
+            iconVariant="cancel"
           />{" "}
           <Button
             text="Delete"
             onClick={() => handleDeleteCard(card.id)}
-            icon={DeleteIcon}
+            iconVariant="delete"
           />
         </Modal>
       )}
     </>
   );
 }
-const Views = styled.span`
-  margin-right: 1rem;
+const Views = styled.div`
+  gap: 0.35rem;
+  margin-right: 0.75rem;
 `;
-const Hits = styled.span`
+const Hits = styled.div`
+  gap: 0.35rem;
   margin: 0 1rem;
 `;
 const WordCard = styled.li`
-  background-color: white;
+  background-color: var(--white);
   color: var(--darktext);
   box-shadow: var(--boxshadow-secondary);
   display: flex;
@@ -91,15 +88,18 @@ const WordCard = styled.li`
   margin: 1rem auto;
   padding: 0.5rem;
   width: 300px;
-  & img {
-    margin-right: 1rem;
-  }
 `;
 const Content = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 0.3rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    align-content: center;
+  }
 `;
 const Buttons = styled.section`
   display: flex;

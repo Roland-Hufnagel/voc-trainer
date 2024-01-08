@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PlaySoundIcon from "./icons/PlaySoundIcon";
+import Icon from "./Icon";
 
 export default function AudioButton({ audioLinks }) {
   const selectedAudio = getPreferredPronunciation(audioLinks);
@@ -17,8 +17,8 @@ export default function AudioButton({ audioLinks }) {
 
   return (
     <ButtonWrapper>
-      <PlayButton onClick={()=>playAudio(selectedAudio.url)}>
-        <PlaySoundIcon width={22} />
+      <PlayButton onClick={() => playAudio(selectedAudio.url)}>
+        <Icon variant="playSound" size={22} />
       </PlayButton>
     </ButtonWrapper>
   );

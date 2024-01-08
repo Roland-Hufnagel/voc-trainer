@@ -1,12 +1,7 @@
 import styled from "styled-components";
-import iconCheckmark from "../public/assets/voc-trainer_icon_checkmark.png";
-import iconEye from "../public/assets/voc-trainer_icon_eye.png";
-import Image from "next/image";
 import Button from "./Button";
 import { useState } from "react";
-import ResetIcon from "./icons/ResetIcon";
-import CancelIcon from "./icons/CancelIcon";
-import SaveIcon from "./icons/SaveIcon";
+import Icon from "./Icon";
 
 export default function EditWordForm({ card, handleChangeCard, handleClose }) {
   const [views, setViews] = useState(card.views);
@@ -29,9 +24,9 @@ export default function EditWordForm({ card, handleChangeCard, handleClose }) {
       <StyledInput defaultValue={card.word} name="word" />
       <StyledInput defaultValue={card.translation} name="translation" />
       <Container>
-        <Image src={iconEye} alt="Eye icon" width="18" />
+        <Icon variant="views" size={20} />
         <span>{views}</span>
-        <Image src={iconCheckmark} alt="Checkmark icon" width="18" />
+        <Icon variant="checkmarkSmall" size={16} />
         <span>{hits}</span>
         <Button
           text="Reset"
@@ -39,13 +34,13 @@ export default function EditWordForm({ card, handleChangeCard, handleClose }) {
             setHits(0);
             setViews(0);
           }}
-          icon={ResetIcon}
+          iconVariant="reset"
         />
       </Container>
       <hr />
       <Container>
-        <Button text="Cancel" onClick={handleClose} icon={CancelIcon} />
-        <Button text="Save" type="submit" icon={SaveIcon} />
+        <Button text="Cancel" onClick={handleClose} iconVariant="cancel" />
+        <Button text="Save" type="submit" iconVariant="checkmark" />
       </Container>
     </StyledForm>
   );

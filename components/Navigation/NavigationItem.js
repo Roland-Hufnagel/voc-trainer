@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import Icon from "../Icon";
 
-export default function NavigationItem({ path, pageName, icon }) {
+export default function NavigationItem({ path, pageName, iconVariant }) {
   const { pathname } = useRouter();
 
   return (
     <StyledListElement isActive={pathname === path}>
       <StyledLink href={path}>
-        {icon}
+        <Icon variant={iconVariant} size="25"  />
         <p>{pageName}</p>
       </StyledLink>
     </StyledListElement>

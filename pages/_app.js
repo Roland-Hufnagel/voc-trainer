@@ -10,6 +10,7 @@ import { getPronunciationAudio } from "../services/fetchDictionaryData";
 import Layout from "../components/Layout";
 
 export default function App({ Component, pageProps }) {
+  console.log("_app:", new Date().getTime());
   const [playedIds, setPlayedIds] = useState([]);
 
   const [cards, setCards] = useLocalStorageState("cards-new", {
@@ -25,6 +26,9 @@ export default function App({ Component, pageProps }) {
   const HITS_TO_WIN = settings.find(
     (setting) => setting.name === "hitsToWin"
   ).value;
+  const countTotal = cards.length;
+  const countFinished = cards.filter((card) => card.hits >= HITS_TO_WIN).length;
+  const countInProgress = countTotal - countFinished;
 
   function handleChangeSettings(name, newValue) {
     setSettings((prev) => {
@@ -50,6 +54,7 @@ export default function App({ Component, pageProps }) {
   }
 
   useEffect(() => {
+    console.log("im useEffect: ", new Date().getTime());
     shuffleCards();
   }, []);
 
@@ -122,7 +127,11 @@ export default function App({ Component, pageProps }) {
         <title>Voc-Trainer</title>
       </Head>
 
-      <Layout>
+      <Layout
+        countFinished={countFinished}
+        countInProgress={countInProgress}
+        countTotal={countTotal}
+      >
         <Component
           {...pageProps}
           {...{

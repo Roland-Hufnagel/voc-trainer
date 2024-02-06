@@ -2,36 +2,52 @@ import styled from "styled-components";
 import Image from "next/image";
 import tinyLogo from "../public/assets/voc-trainer_logo_tiny.png";
 import Icon from "./Icon";
+import { useState } from "react";
 
 export default function Header({ countFinished, countInProgress, countTotal }) {
+  const [showProgress, setShowProgress] = useState(false);
   return (
     <StyledHeader>
       <Title>Voc-Trainer</Title>
       <StyledLogo src={tinyLogo} alt="Logo" />
       <ProgressBox
         onMouseOver={() => {
-          console.log("H");
+          setShowProgress(true);
+          console.log("hhello");
+        }}
+        onMouseOut={() => {
+          setShowProgress(false);
         }}
       >
-        <ProgressElement>
+        {showProgress && <ProgressDetails>Hello</ProgressDetails>}
+        {/* <ProgressElement>
           <Icon variant="total" size={10} />
           {220}
         </ProgressElement>
         <ProgressElement>
           <Icon variant="progress" size={10} />
           {115}
-        </ProgressElement>
+        </ProgressElement> */}
         <ProgressElement>
-          <Icon variant="finished" size={10} />
+          <Icon variant="finished" size={13} />
           {105}
         </ProgressElement>
         <ProgressElement>
-          <Icon variant="info" size={16} color="#ebb134" />
+          <Icon variant="info" size={18} color="#ebb134" />
         </ProgressElement>
       </ProgressBox>
     </StyledHeader>
   );
 }
+const ProgressDetails = styled.div`
+  height: 5em;
+  position: absolute;
+  bottom: -5em;
+  width: 5em;
+  background-color: cornflowerblue;
+
+  z-index: 100;
+`;
 const Title = styled.span`
   grid-area: title;
   text-align: right;
@@ -57,9 +73,11 @@ const ProgressBox = styled.div`
   justify-self: flex-end;
   gap: 1em;
   align-items: center;
-  font-size: 0.6em;
+  font-size: 0.7em;
   font-family: var(--fontfamily-regular);
   margin-top: -0.85em;
+  border: 1px solid green;
+  position: relative;
 `;
 const StyledHeader = styled.header`
   display: grid;

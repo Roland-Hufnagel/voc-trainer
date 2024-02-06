@@ -1,6 +1,6 @@
 import * as deepl from "deepl-node";
 
-const authKey = process.env.DEEPLE_API_KEY;
+const authKey = process.env.DEEPL_API_KEY;
 const translator = new deepl.Translator(authKey);
 
 export default async function handler(req, res) {

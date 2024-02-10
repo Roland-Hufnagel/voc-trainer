@@ -62,14 +62,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: var(--background);
     font-family: var(--fontfamily-regular);
-    /* border: 1px solid blue; */
-    /* padding: 1rem; */
-    /* @media (min-width: 768px){
-      width: 768px;
-      margin: 0 auto;
-    } */
-
-  }
+    }
 `;
 
 export default GlobalStyles;

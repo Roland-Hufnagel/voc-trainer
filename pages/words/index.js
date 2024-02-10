@@ -30,7 +30,7 @@ export default function WordsPage({
         onChange={(event) => setSearchTerm(event.target.value)}
         placeholder="search..."
       />
-      <ul>
+      <CardList>
         {filteredCards.map((card) => (
           <WordsCard
             key={card.id}
@@ -39,15 +39,20 @@ export default function WordsPage({
             handleDeleteCard={handleDeleteCard}
           />
         ))}
-      </ul>
+      </CardList>
     </Wrapper>
   );
 }
+const CardList = styled.ul`
+  width: 100%;
+`;
 const StyledInput = styled.input`
   line-height: 2rem;
   border-radius: 0.5rem;
   margin: 0.2rem;
   padding: 0.2rem 0.4rem;
+  width: 100%;
+  max-width: 430px;
 `;
 const Wrapper = styled.div`
   display: flex;

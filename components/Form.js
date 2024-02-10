@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import styled from "styled-components";
+import Icon from "./Icon";
 
 export default function Form({ handleAddNewWord }) {
   const formRef = useRef();
@@ -35,38 +36,57 @@ export default function Form({ handleAddNewWord }) {
   }
   return (
     <StyledForm onSubmit={handleSubmit} ref={formRef}>
-      <StyledInput
-        name="word"
-        placeholder="...some word"
-        type="text"
-        aria-label="Enter a new word"
-        onBlur={getTranslation}
-      />
-      <StyledInput
-        name="translation"
-        placeholder="...translation"
-        type="text"
-        aria-label="Enter the translation"
-      />
-      <StyledButton aria-label="Add word to your vocabulary" type="submit">
-        ＋
-      </StyledButton>
+      <InputContainer>
+        <StyledInput
+          name="word"
+          placeholder="...some word"
+          type="text"
+          aria-label="Enter a new word"
+          onBlur={getTranslation}
+        />
+        <StyledButton aria-label="Add word to your vocabulary" type="submit">
+          <Icon variant="arrowRight" size={20} />
+        </StyledButton>
+      </InputContainer>
+      <InputContainer>
+        <StyledInput
+          name="translation"
+          placeholder="...translation"
+          type="text"
+          aria-label="Enter the translation"
+        />
+        <StyledButton aria-label="Add word to your vocabulary" type="submit">
+          <Icon variant="checkmarkBig" size={20} />
+        </StyledButton>
+      </InputContainer>
     </StyledForm>
   );
 }
+const InputContainer = styled.div`
+  align-self: stretch;
+  display: flex;
+  gap: 0.3em;
+`;
 const StyledForm = styled.form`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  max-width: 430px;
+  gap: 0.3em;
+  margin: 0 auto;
+  @media (min-width: 430px) {
+    flex-direction: row;
+  }
 `;
 const StyledButton = styled.button`
   padding: 0.5rem;
   border-radius: 0.5rem;
   font-size: 0.9rem;
-  margin: 0.2rem;
 `;
 const StyledInput = styled.input`
   line-height: 2rem;
   border-radius: 0.5rem;
-  margin: 0.2rem;
   padding: 0.2rem 0.4rem;
+  width: 100%;
 `;

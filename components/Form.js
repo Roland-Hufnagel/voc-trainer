@@ -22,10 +22,10 @@ export default function Form({ handleAddNewWord }) {
       event.target.word.focus();
     }
   }
-  async function getTranslation(event) {
+  async function getTranslation() {
     const response = await fetch("/api/deepl", {
       method: "POST",
-      body: JSON.stringify(event.target.value),
+      body: JSON.stringify(formRef.current.word.value),
     });
     if (response.ok) {
       const translation = await response.json();
@@ -42,9 +42,13 @@ export default function Form({ handleAddNewWord }) {
           placeholder="...some word"
           type="text"
           aria-label="Enter a new word"
-          onBlur={getTranslation}
+          //onBlur={getTranslation}
         />
-        <StyledButton aria-label="Add word to your vocabulary" type="submit">
+        <StyledButton
+          aria-label="Get translation"
+          type="button"
+          onClick={getTranslation}
+        >
           <Icon variant="arrowRight" size={20} />
         </StyledButton>
       </InputContainer>

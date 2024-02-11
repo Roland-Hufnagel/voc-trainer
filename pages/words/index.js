@@ -19,8 +19,20 @@ export default function WordsPage({
   const results = fuse.search(searchTerm);
 
   const filteredCards = searchTerm
-    ? results.map((result) => result.item)
-    : cards;
+    ? results
+        .map((result) => result.item)
+        .sort((a, b) => {
+          if (a.word.toLowerCase() > b.word.toLowerCase()) {
+            return 1;
+          }
+          return -1;
+        })
+    : cards.sort((a, b) => {
+        if (a.word.toLowerCase() > b.word.toLowerCase()) {
+          return 1;
+        }
+        return -1;
+      });
 
   return (
     <Wrapper>

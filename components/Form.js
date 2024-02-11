@@ -79,7 +79,7 @@ const StyledForm = styled.form`
   max-width: 430px;
   gap: 0.3em;
   margin: 0 auto;
-  @media (min-width: 430px) {
+  @media (min-width: 431px) {
     flex-direction: row;
   }
 `;

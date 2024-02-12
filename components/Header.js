@@ -22,7 +22,7 @@ export default function Header({ countFinished, countInProgress, countTotal }) {
           onClick={() => {
             setShowProgress(!showProgress);
           }}
-        ><Wrapper> <Icon variant="info" size={18} color="#ebb134" /></Wrapper>
+        ><Wrapper> <Icon variant="info" size={20} color="#ebb134" /></Wrapper>
          
         </InfoButton>
         {showProgress && (

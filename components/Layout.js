@@ -6,9 +6,12 @@ function Layout({ countFinished, countInProgress, countTotal, children }) {
   return (
     <AppContainer>
       <Header
-        countFinished={countFinished}
-        countTotal={countTotal}
-        countInProgress={countInProgress}
+        countFinished={113}
+        // countFinished={countFinished}
+        countTotal={188}
+        // countTotal={countTotal}
+        countInProgress={75}
+        // countInProgress={countInProgress}
       />
       <StyledMain>{children}</StyledMain>
       <NavigationBar />

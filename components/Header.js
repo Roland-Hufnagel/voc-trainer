@@ -10,97 +10,103 @@ export default function Header({ countFinished, countInProgress, countTotal }) {
     <StyledHeader>
       <Title>Voc-Trainer</Title>
       <StyledLogo src={tinyLogo} alt="Logo" />
-      <ProgressBox
-        onMouseOver={() => {
-          setShowProgress(true);
-          console.log("hhello");
-        }}
-        onMouseOut={() => {
-          setShowProgress(false);
-        }}
-      >
-        {showProgress && <ProgressDetails>Hello</ProgressDetails>}
-        {/* <ProgressElement>
-          <Icon variant="total" size={10} />
-          {220}
-        </ProgressElement>
-        <ProgressElement>
-          <Icon variant="progress" size={10} />
-          {115}
-        </ProgressElement> */}
-        <ProgressElement>
-          <Icon variant="finished" size={13} />
-          {105}
-        </ProgressElement>
-        <ProgressElement>
-          <Icon variant="info" size={18} color="#ebb134" />
-        </ProgressElement>
+      <ProgressBox>
+        {countFinished}{" "}
+        <InfoButton
+          onMouseEnter={() => {
+            setShowProgress(true);
+          }}
+          onMouseLeave={() => {
+            setShowProgress(false);
+          }}
+          onClick={() => {
+            setShowProgress(!showProgress);
+          }}
+        ><Wrapper> <Icon variant="info" size={18} color="#ebb134" /></Wrapper>
+         
+        </InfoButton>
+        {showProgress && (
+          <ProgressInfo>
+            <Line>
+              <span>Finished:</span> <span>{countFinished}</span>
+            </Line>
+            <Line>
+              {" "}
+              <span>To Learn:</span> <span>{countInProgress}</span>
+            </Line>
+            <Line>
+              {" "}
+              <span>Total:</span> <span>{countTotal}</span>
+            </Line>
+          </ProgressInfo>
+        )}
       </ProgressBox>
     </StyledHeader>
   );
 }
-const ProgressDetails = styled.div`
-  height: 5em;
+const Wrapper=styled.span`
+transform: translateY(10%);
+`;
+const Line = styled.p`
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.2em;
+  /* &:last-child{
+    border-top: 1px solid black;
+  } */
+`;
+const ProgressInfo = styled.div`
   position: absolute;
-  bottom: -5em;
-  width: 5em;
-  background-color: cornflowerblue;
-
-  z-index: 100;
+  bottom: 0;
+  right: 0;
+  transform: translateY(110%);
+  background-color: #fff;
+  border-radius: 0.5em;
+  border: 2px solid #ebb134;
+  padding: 0.4rem;
+  font-size: 0.8em;
+  line-height: 1.5em;
+  width: 8rem;
+  box-shadow: 0 5px 5px 5px #fff;
+`;
+const InfoButton = styled.button`
+  all: unset;
+  &:hover {
+    cursor: pointer;
+  }
+  display: flex;
+  align-items: end;
 `;
 const Title = styled.span`
   grid-area: title;
   text-align: right;
   margin-top: 0.3em;
 `;
-const ProgressElement = styled.div`
-  display: flex;
-  align-items: baseline;
-  gap: 0.4em;
-  &:last-child {
-    @media (min-width: 768px) {
-      display: none;
-    }
-    padding-left: 0.5em;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-`;
+
 const ProgressBox = styled.div`
-  grid-area: progress;
+  font-size: 1rem;
+  line-height: 1rem;
   display: flex;
-  justify-self: flex-end;
-  gap: 1em;
-  align-items: center;
-  font-size: 0.7em;
-  font-family: var(--fontfamily-regular);
-  margin-top: -0.85em;
-  border: 1px solid green;
+  gap: 0.3em;
+  align-items: baseline;
   position: relative;
 `;
+
 const StyledHeader = styled.header`
-  display: grid;
-  grid-template-areas:
-    "title logo"
-    "progress logo";
-  background-color: #ffffff;
-  color: var(--darktext);
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  justify-content: center;
   font-family: var(--fontfamily-special);
   font-size: 1.3rem;
-  width: 100%;
-  z-index: 100;
+  background-color: #ffffff;
+  color: var(--darktext);
   box-shadow: var(--boxshadow-primary);
-
-  & span {
-    padding-top: 0.6rem;
-  }
 `;
 
 const StyledLogo = styled(Image)`
   grid-area: logo;
   width: 3.0625rem;
   height: 2.875rem;
-  margin: 0.5rem 0 0.4rem 1rem;
+  margin: 0.5rem 0 0.4rem 0rem;
 `;

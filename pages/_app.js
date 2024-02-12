@@ -10,7 +10,7 @@ import { getPronunciationAudio } from "../services/fetchDictionaryData";
 import Layout from "../components/Layout";
 
 export default function App({ Component, pageProps }) {
-  console.log("_app:", new Date().getTime());
+  // console.log("_app:", new Date().getTime());
   const [playedIds, setPlayedIds] = useState([]);
 
   const [cards, setCards] = useLocalStorageState("cards-new", {
@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }) {
   }
 
   useEffect(() => {
-    console.log("im useEffect: ", new Date().getTime());
+    // console.log("im useEffect: ", new Date().getTime());
     shuffleCards();
   }, []);
 

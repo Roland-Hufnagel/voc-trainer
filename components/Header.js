@@ -11,7 +11,7 @@ export default function Header({ countFinished, countInProgress, countTotal }) {
       <Title>Voc-Trainer</Title>
       <StyledLogo src={tinyLogo} alt="Logo" />
       <ProgressBox>
-        {countFinished}{" "}
+        {countFinished}
         <InfoButton
           onMouseEnter={() => {
             setShowProgress(true);
@@ -22,8 +22,10 @@ export default function Header({ countFinished, countInProgress, countTotal }) {
           onClick={() => {
             setShowProgress(!showProgress);
           }}
-        ><Wrapper> <Icon variant="info" size={20} color="#ebb134" /></Wrapper>
-         
+        >
+          <Wrapper>
+            <Icon variant="info" size={20} color="var(--info)" />
+          </Wrapper>
         </InfoButton>
         {showProgress && (
           <ProgressInfo>
@@ -31,11 +33,9 @@ export default function Header({ countFinished, countInProgress, countTotal }) {
               <span>Finished:</span> <span>{countFinished}</span>
             </Line>
             <Line>
-              {" "}
               <span>To Learn:</span> <span>{countInProgress}</span>
             </Line>
             <Line>
-              {" "}
               <span>Total:</span> <span>{countTotal}</span>
             </Line>
           </ProgressInfo>
@@ -44,30 +44,27 @@ export default function Header({ countFinished, countInProgress, countTotal }) {
     </StyledHeader>
   );
 }
-const Wrapper=styled.span`
-transform: translateY(10%);
+const Wrapper = styled.span`
+  transform: translateY(10%);
 `;
 const Line = styled.p`
   display: flex;
   justify-content: space-between;
   padding-top: 0.2em;
-  /* &:last-child{
-    border-top: 1px solid black;
-  } */
 `;
 const ProgressInfo = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
   transform: translateY(110%);
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 0.5em;
-  border: 2px solid #ebb134;
+  border: 2px solid var(--info);
   padding: 0.4rem;
   font-size: 0.8em;
   line-height: 1.5em;
   width: 8rem;
-  box-shadow: 0 5px 5px 5px #fff;
+  box-shadow: 0 5px 5px 5px var(--white);
 `;
 const InfoButton = styled.button`
   all: unset;
@@ -78,8 +75,6 @@ const InfoButton = styled.button`
   align-items: end;
 `;
 const Title = styled.span`
-  grid-area: title;
-  text-align: right;
   margin-top: 0.3em;
 `;
 
@@ -105,7 +100,6 @@ const StyledHeader = styled.header`
 `;
 
 const StyledLogo = styled(Image)`
-  grid-area: logo;
   width: 3.0625rem;
   height: 2.875rem;
   margin: 0.5rem 0 0.4rem 0rem;

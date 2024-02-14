@@ -32,6 +32,7 @@ const GlobalStyles = createGlobalStyle`
     --gray-light: #ebebf3;
     --gray-95: #ebebf2;
     --gray-98: #f2f2fa;
+    --info: #ebb134;
 
     --link-active: #27273a;
     --link-inactive: #8f8f99;

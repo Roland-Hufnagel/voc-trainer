@@ -25,6 +25,9 @@ export default function App({ Component, pageProps }) {
   const HITS_TO_WIN = settings.find(
     (setting) => setting.name === "hitsToWin"
   ).value;
+  const countTotal = cards.length;
+  const countFinished = cards.filter((card) => card.hits >= HITS_TO_WIN).length;
+  const countInProgress = countTotal - countFinished;
 
   function handleChangeSettings(name, newValue) {
     setSettings((prev) => {
@@ -122,7 +125,11 @@ export default function App({ Component, pageProps }) {
         <title>Voc-Trainer</title>
       </Head>
 
-      <Layout>
+      <Layout
+        countFinished={countFinished}
+        countInProgress={countInProgress}
+        countTotal={countTotal}
+      >
         <Component
           {...pageProps}
           {...{

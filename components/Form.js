@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import styled from "styled-components";
 import Icon from "./Icon";
+import Button from "./Button";
 
 export default function Form({ handleAddNewWord }) {
   const formRef = useRef();
@@ -42,7 +43,6 @@ export default function Form({ handleAddNewWord }) {
           placeholder="...some word"
           type="text"
           aria-label="Enter a new word"
-          //onBlur={getTranslation}
         />
         <StyledButton
           aria-label="Get translation"
@@ -83,6 +83,7 @@ const StyledForm = styled.form`
     flex-direction: row;
   }
 `;
+
 const StyledButton = styled.button`
   padding: 0.5rem;
   border-radius: 0.5rem;

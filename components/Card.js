@@ -95,7 +95,7 @@ const StyledCard = styled.li`
   margin: 1rem auto;
   padding: 0 0.8rem;
   height: 10rem;
-  width: 15rem;
+  max-width: 430px;
   overflow: hidden;
   box-shadow: var(--boxshadow-secondary);
 

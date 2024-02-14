@@ -20,5 +20,5 @@ const AppContainer = styled.div`
 `;
 const StyledMain = styled.main`
   overflow-y: auto;
-  padding: 0.5rem;
+  padding: 1rem;
 `;

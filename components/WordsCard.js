@@ -87,7 +87,7 @@ const WordCard = styled.li`
   justify-content: space-between;
   margin: 1rem auto;
   padding: 0.5rem;
-  width: 300px;
+  max-width: 430px;
 `;
 const Content = styled.section`
   display: flex;

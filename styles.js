@@ -62,7 +62,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: var(--background);
     font-family: var(--fontfamily-regular);
-  }
+    }
 `;
 
 export default GlobalStyles;
